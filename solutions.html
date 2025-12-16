@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Готовые решения | AirTech - Под ключ для квартир, домов и офисов</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
+
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .solution-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .solution-card:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        .price-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .comparison-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .step-circle {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 24px;
+            border-radius: 50%;
+            margin: 0 auto 16px;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Навигация -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-lg shadow-sm z-50">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="text-2xl font-bold">
+                    <span class="text-gray-900">Air</span>
+                    <span class="text-blue-600">Tech</span>
+                </a>
+                <div class="hidden lg:flex items-center space-x-10">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600">Главная</a>
+                    <a href="services.html" class="text-gray-700 hover:text-blue-600">Услуги</a>
+                    <a href="products.html" class="text-gray-700 hover:text-blue-600">Оборудование</a>
+                    <a href="solutions.html" class="text-blue-600 font-semibold">Решения</a>
+                    <a href="portfolio.html" class="text-gray-700 hover:text-blue-600">Проекты</a>
+                    <a href="faq.html" class="text-gray-700 hover:text-blue-600">FAQ</a>
+                    <a href="contacts.html" class="text-gray-700 hover:text-blue-600">Контакты</a>
+                </div>
+                <a href="tel:+79991234567" class="hidden lg:inline text-gray-900 font-semibold">
+                    <i class="fas fa-phone mr-2"></i>+7 (999) 123-45-67
+                </a>
+                <!-- Иконка корзины -->
+                <a href="cart.html" class="relative">
+                    <i class="fas fa-shopping-cart text-gray-700 hover:text-blue-600 text-xl transition"></i>
+                    <span id="cart-count"
+                        class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center hidden">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Заголовок страницы -->
+    <section class="pt-32 pb-20 bg-gradient-to-r from-blue-900 to-gray-900">
+        <div class="container mx-auto px-6">
+            <h1 class="text-5xl font-bold text-white mb-6">Готовые решения "под ключ"</h1>
+            <p class="text-xl text-gray-300 max-w-3xl">
+                Оптимальные комплекты систем вентиляции и кондиционирования для разных типов помещений.
+                Все включено: оборудование, монтаж, пусконаладка и гарантия.
+            </p>
+        </div>
+    </section>
+
+    <!-- Решения для разных объектов -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Выберите ваш объект</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Мы подготовили оптимальные решения для наиболее частых задач
+                </p>
+            </div>
+
+            <!-- Фильтры -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="filter-btn px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold" data-filter="all">
+                    Все решения
+                </button>
+                <button class="filter-btn px-6 py-3 bg-gray-100 rounded-lg font-semibold hover:bg-gray-200"
+                    data-filter="apartment">
+                    Квартиры
+                </button>
+                <button class="filter-btn px-6 py-3 bg-gray-100 rounded-lg font-semibold hover:bg-gray-200"
+                    data-filter="house">
+                    Дома
+                </button>
+                <button class="filter-btn px-6 py-3 bg-gray-100 rounded-lg font-semibold hover:bg-gray-200"
+                    data-filter="office">
+                    Офисы
+                </button>
+                <button class="filter-btn px=6 py-3 bg-gray-100 rounded-lg font-semibold hover:bg-gray-200"
+                    data-filter="commercial">
+                    Коммерция
+                </button>
+            </div>
+
+            <!-- Карточки решений -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Решение 1: Квартира-студия -->
+                <div class="solution-card bg-white rounded-2xl shadow-xl overflow-hidden" data-category="apartment">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Квартира-студия" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                Самый популярный
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-900">Квартира-студия</h3>
+                                <p class="text-gray-600">до 40 м²</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-3xl font-bold text-gray-900">от 89 000 ₽</p>
+                                <p class="text-gray-500 text-sm">под ключ</p>
+                            </div>
+                        </div>
+
+                        <p class="text-gray-600 mb-6">
+                            Идеальное решение для небольших квартир и студий. Тихая работа, чистый воздух и комфортная
+                            температура круглый год.
+                        </p>
+
+                        <div class="space-y-3 mb-8">
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Сплит-система Daikin 2.5 кВт</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Компактный бризер (приточная вентиляция)</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Монтаж за 1 день</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Гарантия 3 года</span>
+                            </div>
+                        </div>
+
+                        <button onclick="openSolutionModal(1)"
+                            class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:opacity-90 transition">
+                            Подробнее о решении
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Решение 2: Коттедж -->
+                <div class="solution-card bg-white rounded-2xl shadow-xl overflow-hidden" data-category="house">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Загородный дом" class="w-full h-full object-cover">
+                    </div>
+
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-900">Загородный дом</h3>
+                                <p class="text-gray-600">100-150 м²</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-3xl font-bold text-gray-900">от 295 000 ₽</p>
+                                <p class="text-gray-500 text-sm">под ключ</p>
+                            </div>
+                        </div>
+
+                        <p class="text-gray-600 mb-6">
+                            Полноценная система для комфортного проживания в частном доме. Приточно-вытяжная вентиляция
+                            с рекуперацией и мульти-сплит система.
+                        </p>
+
+                        <div class="space-y-3 mb-8">
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Мульти-сплит система на 3 комнаты</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Приточно-вытяжная установка с рекуператором</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Проектирование и монтаж за 5-7 дней</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Гарантия 5 лет</span>
+                            </div>
+                        </div>
+
+                        <button onclick="openSolutionModal(2)"
+                            class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:opacity-90 transition">
+                            Подробнее о решении
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Решение 3: Офис open-space -->
+                <div class="solution-card bg-white rounded-2xl shadow-xl overflow-hidden" data-category="office">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Офис" class="w-full h-full object-cover">
+                    </div>
+
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-900">Офис open-space</h3>
+                                <p class="text-gray-600">50-100 м²</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-3xl font-bold text-gray-900">от 189 000 ₽</p>
+                                <p class="text-gray-500 text-sm">под ключ</p>
+                            </div>
+                        </div>
+
+                        <p class="text-gray-600 mb-6">
+                            Оптимальный климат для продуктивной работы. Канальные кондиционеры и приточная вентиляция
+                            для всего офиса.
+                        </p>
+
+                        <div class="space-y-3 mb-8">
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Канальный кондиционер Daikin 7.1 кВт</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Приточная установка Breezart 350</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Рециркуляция и очистка воздуха</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Монтаж в нерабочее время</span>
+                            </div>
+                        </div>
+
+                        <button onclick="openSolutionModal(3)"
+                            class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:opacity-90 transition">
+                            Подробнее о решении
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Решение 4: Кафе/ресторан -->
+                <div class="solution-card bg-white rounded-2xl shadow-xl overflow-hidden" data-category="commercial">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Ресторан" class="w-full h-full object-cover">
+                    </div>
+
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-900">Кафе/ресторан</h3>
+                                <p class="text-gray-600">до 80 м²</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-3xl font-bold text-gray-900">от 245 000 ₽</p>
+                                <p class="text-gray-500 text-sm">под ключ</p>
+                            </div>
+                        </div>
+
+                        <p class="text-gray-600 mb-6">
+                            Специальное решение для общепита. Мощная вытяжка для кухни и эффективное кондиционирование
+                            зала.
+                        </p>
+
+                        <div class="space-y-3 mb-8">
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Промышленная вытяжка для кухни</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Кассетные кондиционеры для зала</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Угольные фильтры от запахов</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Согласование с СЭС</span>
+                            </div>
+                        </div>
+
+                        <button onclick="openSolutionModal(4)"
+                            class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:opacity-90 transition">
+                            Подробнее о решении
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Решение 5: 3-комнатная квартира -->
+                <div class="solution-card bg-white rounded-2xl shadow-xl overflow-hidden" data-category="apartment">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="3-комнатная квартира" class="w-full h-full object-cover">
+                    </div>
+
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-900">3-комнатная квартира</h3>
+                                <p class="text-gray-600">70-90 м²</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-3xl font-bold text-gray-900">от 156 000 ₽</p>
+                                <p class="text-gray-500 text-sm">под ключ</p>
+                            </div>
+                        </div>
+
+                        <p class="text-gray-600 mb-6">
+                            Комплексное решение для всей семьи. Отдельные сплит-системы в каждую комнату и центральная
+                            приточная вентиляция.
+                        </p>
+
+                        <div class="space-y-3 mb-8">
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>3 сплит-системы Daikin 2.5-3.5 кВт</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Центральная приточная установка</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Умный климат-контроль</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Монтаж за 3 дня</span>
+                            </div>
+                        </div>
+
+                        <button onclick="openSolutionModal(5)"
+                            class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:opacity-90 transition">
+                            Подробнее о решении
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Решение 6: Магазин розничной торговли -->
+                <div class="solution-card bg-white rounded-2xl shadow-xl overflow-hidden" data-category="commercial">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Магазин" class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                Экономия 15%
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-900">Магазин</h3>
+                                <p class="text-gray-600">60-120 м²</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-3xl font-bold text-gray-900">от 212 000 ₽</p>
+                                <p class="text-gray-500 text-sm">под ключ</p>
+                            </div>
+                        </div>
+
+                        <p class="text-gray-600 mb-6">
+                            Эффективное решение для розничной торговли. Поддержание комфортной температуры для
+                            покупателей и сотрудников.
+                        </p>
+
+                        <div class="space-y-3 mb-8">
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Канальные или кассетные кондиционеры</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Приточно-вытяжная вентиляция</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Экономичный режим работы</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>Монтаж в выходные дни</span>
+                            </div>
+                        </div>
+
+                        <button onclick="openSolutionModal(6)"
+                            class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:opacity-90 transition">
+                            Подробнее о решении
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Этапы работы -->
+    <section class="py-20 bg-gradient-to-r from-blue-50 to-purple-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Как мы работаем</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Простой и прозрачный процесс от заявки до сдачи объекта
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="step-circle">1</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Заявка и замеры</h3>
+                    <p class="text-gray-600">Бесплатный выезд инженера, замеры и консультация</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="step-circle">2</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Проектирование</h3>
+                    <p class="text-gray-600">Разработка 3D-проекта и подбор оборудования</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="step-circle">3</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Монтаж</h3>
+                    <p class="text-gray-600">Аккуратный монтаж силами сертифицированных специалистов</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="step-circle">4</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Сдача и гарантия</h3>
+                    <p class="text-gray-600">Пусконаладка, обучение и передача гарантийных документов</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Сравнение решений -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Сравнение решений</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Выберите оптимальный вариант для вашего бюджета и требований
+                </p>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="comparison-table w-full bg-white rounded-2xl shadow-lg">
+                    <thead>
+                        <tr class="bg-gray-50">
+                            <th class="text-left p-6 font-bold text-gray-900">Параметр</th>
+                            <th class="text-center p-6 font-bold text-gray-900">Эконом</th>
+                            <th class="text-center p-6 font-bold text-gray-900">Стандарт</th>
+                            <th class="text-center p-6 font-bold text-blue-600">Премиум</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="font-semibold">Оборудование</td>
+                            <td class="text-center">Ballu, Electrolux</td>
+                            <td class="text-center">Daikin, Mitsubishi</td>
+                            <td class="text-center">Daikin, Mitsubishi Electric</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Гарантия на работы</td>
+                            <td class="text-center">2 года</td>
+                            <td class="text-center">3 года</td>
+                            <td class="text-center">5 лет</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Срок монтажа</td>
+                            <td class="text-center">2-3 дня</td>
+                            <td class="text-center">3-5 дней</td>
+                            <td class="text-center">5-7 дней</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Проектирование</td>
+                            <td class="text-center">Базовая схема</td>
+                            <td class="text-center">Детальный проект</td>
+                            <td class="text-center">3D-моделирование</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Шумность</td>
+                            <td class="text-center">25-30 дБ</td>
+                            <td class="text-center">20-25 дБ</td>
+                            <td class="text-center">18-22 дБ</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Энергоэффективность</td>
+                            <td class="text-center">Класс A</td>
+                            <td class="text-center">Класс A+</td>
+                            <td class="text-center">Класс A+++</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold">Стоимость для квартиры 40м²</td>
+                            <td class="text-center">от 65 000 ₽</td>
+                            <td class="text-center">от 89 000 ₽</td>
+                            <td class="text-center">от 125 000 ₽</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="text-center mt-12">
+                <p class="text-gray-600 mb-6">
+                    Не нашли подходящее решение? Мы разработаем индивидуальный проект специально для вас
+                </p>
+                <a href="#calculator"
+                    class="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:opacity-90 transition">
+                    Заказать индивидуальный расчет
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Форма заявки -->
+    <section id="calculator" class="py-20 bg-gradient-to-r from-blue-900 to-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden">
+                <div class="md:flex">
+                    <!-- Левая часть с формой -->
+                    <div class="md:w-1/2 p-10">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-4">Рассчитайте стоимость</h2>
+                        <p class="text-gray-600 mb-8">Оставьте заявку и получите детальный расчет в течение 1 часа</p>
+
+                        <form id="main-form" class="space-y-6">
+                            <div>
+                                <label class="block text-gray-700 mb-2">Ваше имя</label>
+                                <input type="text"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                                    placeholder="Иван Иванов" required>
+                            </div>
+
+                            <div>
+                                <label class="block text-gray-700 mb-2">Телефон</label>
+                                <input type="tel"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                                    placeholder="+7 (999) 123-45-67" required>
+                            </div>
+
+                            <div>
+                                <label class="block text-gray-700 mb-2">Тип услуги</label>
+                                <select
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                                    <option value="" disabled selected>Выберите услугу</option>
+                                    <option value="ventilation">Вентиляция</option>
+                                    <option value="conditioning">Кондиционирование</option>
+                                    <option value="project">Проектирование</option>
+                                    <option value="maintenance">Обслуживание</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-gray-700 mb-2">Комментарий</label>
+                                <textarea
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition h-32"
+                                    placeholder="Опишите вашу задачу..."></textarea>
+                            </div>
+
+                            <button type="submit"
+                                class="w-full bg-gradient-primary hover:opacity-90 text-white py-4 rounded-lg font-semibold text-lg transition shadow-lg hover:shadow-xl">
+                                Отправить заявку
+                            </button>
+
+                            <p class="text-sm text-gray-500 text-center">
+                                Нажимая кнопку, вы соглашаетесь с
+                                <a href="#" class="text-blue-600 hover:underline">политикой конфиденциальности</a>
+                            </p>
+                        </form>
+                    </div>
+
+                    <!-- Правая часть с информацией -->
+                    <div class="md:w-1/2 bg-gradient-to-br from-blue-600 to-purple-700 p-10 text-white">
+                        <h3 class="text-2xl font-bold mb-6">Почему выбирают нас?</h3>
+
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-white/20 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-check text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-2">Бесплатный выезд инженера</h4>
+                                    <p class="text-white/80">В течение 24 часов после заявки</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="bg-white/20 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-check text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-2">Гарантия 5 лет</h4>
+                                    <p class="text-white/80">На все виды монтажных работ</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="bg-white/20 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-check text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-2">Официальный договор</h4>
+                                    <p class="text-white/80">С поэтапной оплатой работ</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="bg-white/20 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-check text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-2">Сертифицированные специалисты</h4>
+                                    <p class="text-white/80">С опытом работы от 5 лет</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-10 pt-8 border-t border-white/20">
+                            <div class="flex items-center">
+                                <div class="mr-4">
+                                    <i class="fas fa-headset text-3xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-2xl font-bold">+7 (999) 123-45-67</p>
+                                    <p class="text-white/80">Ежедневно с 9:00 до 21:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+  <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <!-- Колонка 1 -->
+                <div>
+                    <a href="index.html" class="text-3xl font-bold mb-6 inline-block">
+                        <span class="text-white">Air</span>
+                        <span class="text-blue-400">Tech</span>
+                    </a>
+                    <p class="text-gray-400 mb-6">
+                        Профессиональный монтаж и обслуживание систем вентиляции и кондиционирования с 2012 года.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-blue-600 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-blue-500 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-green-500 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-red-600 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Колонка 2 -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Контакты</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-blue-400 mt-1 mr-3"></i>
+                            <span class="text-gray-400">Москва, ул. Примерная, д. 10</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-blue-400 mr-3"></i>
+                            <a href="tel:+79991234567" class="text-gray-400 hover:text-white transition">+7 (999)
+                                123-45-67</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-blue-400 mr-3"></i>
+                            <a href="mailto:info@airtech.ru"
+                                class="text-gray-400 hover:text-white transition">info@airtech.ru</a>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-clock text-blue-400 mt-1 mr-3"></i>
+                            <span class="text-gray-400">Пн-Пт: 9:00-19:00<br>Сб: 10:00-16:00</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Колонка 3 -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Услуги</h4>
+                    <ul class="space-y-3">
+                        <li><a href="services.html#ventilation" class="text-gray-400 hover:text-white transition">Монтаж
+                                вентиляции</a></li>
+                        <li><a href="services.html#conditioning"
+                                class="text-gray-400 hover:text-white transition">Кондиционирование</a></li>
+                        <li><a href="services.html#design"
+                                class="text-gray-400 hover:text-white transition">Проектирование</a></li>
+                        <li><a href="services.html#maintenance"
+                                class="text-gray-400 hover:text-white transition">Обслуживание</a></li>
+                        <li><a href="services.html#measurements"
+                                class="text-gray-400 hover:text-white transition">Замеры и диагностика</a></li>
+                    </ul>
+                </div>
+
+                <!-- Колонка 4 -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Компания</h4>
+                    <ul class="space-y-3">
+                        <li><a href="portfolio.html" class="text-gray-400 hover:text-white transition">Проекты</a></li>
+                        <li><a href="solutions.html" class="text-gray-400 hover:text-white transition">Готовые
+                                решения</a></li>
+                        <li><a href="products.html" class="text-gray-400 hover:text-white transition">Оборудование</a>
+                        </li>
+                        <li><a href="faq.html" class="text-gray-400 hover:text-white transition">Вопросы и ответы</a>
+                        </li>
+                        <li><a href="contacts.html" class="text-gray-400 hover:text-white transition">Контакты</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 mb-4 md:mb-0">© 2024 AirTech. Все права защищены.</p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white transition">Политика конфиденциальности</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">Договор оферты</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">Карта сайта</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Модальное окно решения -->
+    <div id="solution-modal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-8">
+                <button onclick="closeSolutionModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+
+                <div id="modal-content">
+                    <!-- Контент будет заполнен JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+     
+
+    <script>
+        // Фильтрация решений
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                // Сброс активного класса
+                document.querySelectorAll('.filter-btn').forEach(b => {
+                    b.classList.remove('bg-blue-600', 'text-white');
+                    b.classList.add('bg-gray-100', 'text-gray-900');
+                });
+
+                // Добавление активного класса
+                this.classList.remove('bg-gray-100', 'text-gray-900');
+                this.classList.add('bg-blue-600', 'text-white');
+
+                // Фильтрация
+                const filter = this.dataset.filter;
+                const solutions = document.querySelectorAll('.solution-card');
+
+                solutions.forEach(solution => {
+                    if (filter === 'all' || solution.dataset.category.includes(filter)) {
+                        solution.style.display = 'block';
+                        setTimeout(() => {
+                            solution.style.opacity = '1';
+                            solution.style.transform = 'translateY(0)';
+                        }, 100);
+                    } else {
+                        solution.style.opacity = '0';
+                        solution.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            solution.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // Данные для модальных окон
+        const solutionsData = {
+            1: {
+                title: 'Квартира-студия до 40 м²',
+                description: 'Идеальное решение для небольших квартир и студий. Тихая работа, чистый воздух и комфортная температура круглый год.',
+                price: 'от 89 000 ₽ под ключ',
+                image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                equipment: [
+                    'Сплит-система Daikin FTXS25J/RXS25J (2.5 кВт)',
+                    'Бризер Tion O2 (приточная вентиляция)',
+                    'Медные трубопроводы с теплоизоляцией',
+                    'Кабельная продукция ABB',
+                    'Кронштейны с виброгасящими прокладками'
+                ],
+                features: [
+                    'Уровень шума: 19 дБ (тише шепота)',
+                    'Энергопотребление: класс A+++',
+                    'Wi-Fi управление со смартфона',
+                    'Ночной режим и таймер',
+                    'Моющийся фильтр и ионизация'
+                ],
+                timeline: 'Монтаж за 1 рабочий день',
+                warranty: '3 года на оборудование и работы'
+            }
+        };
+
+        function openSolutionModal(solutionId) {
+            const solution = solutionsData[solutionId] || {
+                title: 'Индивидуальное решение',
+                description: 'Мы разработаем оптимальное решение специально для вашего объекта.',
+                price: 'Рассчитывается индивидуально',
+                equipment: ['Подбор по вашим требованиям', 'Оптимальное сочетание цены и качества', 'Согласование всех нюансов'],
+                features: ['Персональный подход', 'Учет всех особенностей объекта', 'Гибкие условия оплаты'],
+                timeline: 'От 3 до 10 рабочих дней',
+                warranty: 'До 5 лет на оборудование и работы'
+            };
+
+            const modalContent = document.getElementById('modal-content');
+            modalContent.innerHTML = `
+                <h3 class="text-3xl font-bold text-gray-900 mb-4">${solution.title}</h3>
+                <p class="text-gray-600 mb-6">${solution.description}</p>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <div class="bg-blue-50 rounded-xl p-6 mb-6">
+                            <p class="text-3xl font-bold text-blue-600 mb-2">${solution.price}</p>
+                            <p class="text-gray-600">Включая оборудование, монтаж и пусконаладку</p>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="text-xl font-bold text-gray-900 mb-3">Состав системы:</h4>
+                            <ul class="space-y-2">
+                                ${solution.equipment.map(item => `
+                                    <li class="flex items-center">
+                                        <i class="fas fa-check text-green-500 mr-3"></i>
+                                        <span>${item}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="mb-6">
+                            <h4 class="text-xl font-bold text-gray-900 mb-3">Особенности:</h4>
+                            <ul class="space-y-2">
+                                ${solution.features.map(item => `
+                                    <li class="flex items-center">
+                                        <i class="fas fa-star text-yellow-500 mr-3"></i>
+                                        <span>${item}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-gray-50 rounded-xl p-6">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-calendar-alt text-blue-600 text-2xl mr-4"></i>
+                                <div>
+                                    <p class="font-semibold">Срок реализации:</p>
+                                    <p>${solution.timeline}</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <i class="fas fa-shield-alt text-green-600 text-2xl mr-4"></i>
+                                <div>
+                                    <p class="font-semibold">Гарантия:</p>
+                                    <p>${solution.warranty}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 pt-8 border-t">
+                    <h4 class="text-xl font-bold text-gray-900 mb-4">Заказать это решение</h4>
+                    <form class="grid md:grid-cols-3 gap-4">
+                        <input type="text" placeholder="Ваше имя" class="px-4 py-3 border rounded-lg">
+                        <input type="tel" placeholder="Телефон" class="px-4 py-3 border rounded-lg">
+                        <button type="submit" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold">
+                            Заказать расчет
+                        </button>
+                    </form>
+                </div>
+            `;
+
+            document.getElementById('solution-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSolutionModal() {
+            document.getElementById('solution-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+    </script>
+    <!-- Простой скрипт для обновления иконки корзины -->
+<script>
+    // Обновляем иконку корзины на всех страницах
+    document.addEventListener('DOMContentLoaded', function() {
+        function updateCartIcon() {
+            const cart = JSON.parse(localStorage.getItem('airtech_cart')) || [];
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            const cartCount = document.getElementById('cart-count');
+            const mobileCartCount = document.getElementById('mobile-cart-count');
+            
+            [cartCount, mobileCartCount].forEach(element => {
+                if (element) {
+                    if (totalItems > 0) {
+                        element.textContent = totalItems > 99 ? '99+' : totalItems;
+                        element.classList.remove('hidden');
+                    } else {
+                        element.classList.add('hidden');
+                    }
+                }
+            });
+        }
+        
+        updateCartIcon();
+    });
+</script>
+</body>
+
+</html>

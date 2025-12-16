@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AirTech | Профессиональный монтаж вентиляции и кондиционирования</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Styles -->
+   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
+    
+    body {
+        font-family: 'Manrope', sans-serif;
+        overflow-x: hidden;
+    }
+    
+    .text-gradient {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    .bg-gradient-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    /* Упрощенные анимации с will-change для оптимизации */
+    .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+                    transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: opacity, transform;
+    }
+    
+    .animate-on-scroll.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    /* Плавные hover-эффекты */
+    .hover-lift {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        will-change: transform;
+    }
+    
+    .hover-lift:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Оптимизированные fadeIn анимации */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translate3d(0, 30px, 0);
+        }
+        to {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+    
+    .animate-fadeInUp {
+        animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        will-change: opacity, transform;
+    }
+    
+    /* Параллакс с GPU-ускорением */
+    .parallax-bg {
+        transform: translate3d(0, 0, 0);
+        backface-visibility: hidden;
+        perspective: 1000px;
+    }
+    
+    /* Оптимизированные тени */
+    .shadow-soft {
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    }
+    
+    .shadow-hover {
+        transition: box-shadow 0.3s ease;
+        will-change: box-shadow;
+    }
+    
+    .shadow-hover:hover {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Анимация появления для героя */
+    .hero-content > * {
+        opacity: 0;
+        animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        will-change: opacity, transform;
+    }
+    
+    .hero-title {
+        animation-delay: 0.3s;
+    }
+    
+    .hero-subtitle {
+        animation-delay: 0.6s;
+    }
+    
+    .hero-buttons {
+        animation-delay: 0.9s;
+    }
+    
+    .hero-features {
+        animation-delay: 1.2s;
+    }
+    
+    .hero-features > div {
+        opacity: 0;
+        animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    
+    .hero-features > div:nth-child(1) { animation-delay: 1.2s; }
+    .hero-features > div:nth-child(2) { animation-delay: 1.4s; }
+    .hero-features > div:nth-child(3) { animation-delay: 1.6s; }
+    
+    /* Оптимизированный видео-фон */
+    .hero-video video {
+        transform: translate3d(0, 0, 0);
+        backface-visibility: hidden;
+        will-change: transform;
+    }
+</style>
+
+
+    <!-- GSAP для анимаций -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="js/main.js"></script>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Навигация -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-lg shadow-sm z-50">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center h-20">
+                <!-- Логотип -->
+                <a href="index.html" class="text-2xl font-bold">
+                    <span class="text-gray-900">Air</span>
+                    <span class="text-blue-600">Tech</span>
+                </a>
+
+                <!-- Десктопное меню -->
+                <div class="hidden lg:flex items-center space-x-10">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 font-medium transition">Главная</a>
+                    <a href="services.html" class="text-gray-700 hover:text-blue-600 font-medium transition">Услуги</a>
+                    <a href="products.html"
+                        class="text-gray-700 hover:text-blue-600 font-medium transition">Оборудование</a>
+                    <a href="solutions.html"
+                        class="text-gray-700 hover:text-blue-600 font-medium transition">Решения</a>
+                    <a href="portfolio.html"
+                        class="text-gray-700 hover:text-blue-600 font-medium transition">Проекты</a>
+                    <a href="faq.html" class="text-gray-700 hover:text-blue-600 font-medium transition">FAQ</a>
+                    <a href="contacts.html"
+                        class="text-gray-700 hover:text-blue-600 font-medium transition">Контакты</a>
+                </div>
+
+                <!-- Контакты и кнопка -->
+                <div class="hidden lg:flex items-center space-x-6">
+                    <a href="tel:+79991234567" class="text-gray-900 font-semibold hover:text-blue-600 transition">
+                        <i class="fas fa-phone mr-2"></i>+7 (999) 123-45-67
+                    </a>
+                    <!-- Иконка корзины -->
+                    <a href="cart.html" class="relative">
+                        <i class="fas fa-shopping-cart text-gray-700 hover:text-blue-600 text-xl transition"></i>
+                        <span id="cart-count"
+                            class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center hidden">0</span>
+                    </a>
+                    <button onclick="openModal()"
+                        class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition shadow-md hover:shadow-lg">
+                        Заказать звонок
+                    </button>
+                </div>
+
+                <!-- Мобильное меню -->
+                <button id="mobile-menu-button" class="lg:hidden text-gray-700">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+
+            <!-- Мобильное меню (скрытое) -->
+            <div id="mobile-menu" class="hidden lg:hidden py-4 border-t">
+                <div class="flex flex-col space-y-4">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 font-medium">Главная</a>
+                    <a href="services.html" class="text-gray-700 hover:text-blue-600 font-medium">Услуги</a>
+                    <a href="products.html" class="text-gray-700 hover:text-blue-600 font-medium">Оборудование</a>
+                    <a href="solutions.html" class="text-gray-700 hover:text-blue-600 font-medium">Решения</a>
+                    <a href="portfolio.html" class="text-gray-700 hover:text-blue-600 font-medium">Проекты</a>
+                    <a href="faq.html" class="text-gray-700 hover:text-blue-600 font-medium">FAQ</a>
+                    <a href="contacts.html" class="text-gray-700 hover:text-blue-600 font-medium">Контакты</a>
+                    <a href="tel:+79991234567" class="text-gray-900 font-semibold mt-4">
+                        <i class="fas fa-phone mr-2"></i>+7 (999) 123-45-67
+                    </a>
+                    <a href="cart.html" class="text-gray-700 hover:text-blue-600 font-medium flex items-center">
+                        <i class="fas fa-shopping-cart mr-2"></i>Корзина
+                        <span id="mobile-cart-count"
+                            class="ml-auto bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center hidden">0</span>
+                    </a>
+                    <button onclick="openModal()"
+                        class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold mt-2">
+                        Заказать звонок
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Герой секция -->
+    <section class="pt-32 pb-20 lg:pt-40 lg:pb-32 relative overflow-hidden">
+        <!-- Фоновое изображение -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+                alt="Вентиляционное оборудование" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-r from-gray-900/90 to-blue-900/70"></div>
+        </div>
+
+       <div class="container mx-auto px-6 relative z-10">
+        <div class="hero-content max-w-3xl">
+            <h1 class="hero-title text-4xl lg:text-6xl font-bold text-white mb-6">
+                Идеальный климат <br>
+                <span class="text-gradient">для вашего пространства</span>
+            </h1>
+            
+            <p class="hero-subtitle text-xl text-gray-200 mb-10">
+                Профессиональный монтаж вентиляции и кондиционирования с гарантией 5 лет на работы. 
+                Более 150 успешных проектов по всей Москве и области.
+            </p>
+            
+            <div class="hero-buttons flex flex-col sm:flex-row gap-4 mb-12">
+                <a href="#calculator" class="bg-gradient-primary hover:opacity-90 text-white px-8 py-4 rounded-lg font-semibold text-lg text-center transition-opacity duration-300 shadow-lg hover:shadow-xl">
+                    Рассчитать стоимость
+                </a>
+                <a href="portfolio.html" class="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border border-white/30 px-8 py-4 rounded-lg font-semibold text-lg text-center transition-all duration-300">
+                    Наши проекты
+                </a>
+            </div>
+            
+            <div class="hero-features grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 animate-on-scroll">
+                    <div class="flex items-center">
+                        <div class="bg-blue-500/20 p-3 rounded-lg mr-4">
+                            <i class="fas fa-calendar-check text-blue-400 text-2xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-white">12 лет</p>
+                            <p class="text-gray-300">на рынке</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20 animate-on-scroll" data-delay="100">
+                    <div class="flex items-center">
+                        <div class="bg-green-500/20 p-3 rounded-lg mr-4">
+                            <i class="fas fa-medal text-green-400 text-2xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-white">150+</p>
+                            <p class="text-gray-300">проектов</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
+                        <div class="flex items-center">
+                            <div class="bg-orange-500/20 p-3 rounded-lg mr-4">
+                                <i class="fas fa-shield-alt text-orange-400 text-2xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-2xl font-bold text-white">5 лет</p>
+                                <p class="text-gray-300">гарантии</p>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- Секция услуг -->
+   <!-- Секция услуг -->
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16 animate-on-scroll">
+            <h2 class="text-4xl font-bold text-gray-900 mb-4">Наши услуги</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Полный комплекс услуг по созданию комфортного климата в вашем помещении
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Услуга 1 -->
+            <div class="service-card bg-gray-50 rounded-2xl p-8 hover-lift shadow-soft shadow-hover animate-on-scroll border border-gray-100"
+                 data-delay="0">
+                <div class="bg-gradient-primary w-16 h-16 rounded-xl flex items-center justify-center mb-6">
+                    <i class="fas fa-tools text-white text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Монтаж вентиляции</h3>
+                <p class="text-gray-600 mb-6">
+                    Профессиональная установка приточно-вытяжных систем любой сложности.
+                </p>
+                <a href="services.html#ventilation" class="text-blue-600 font-semibold hover:text-blue-800 transition flex items-center">
+                    Подробнее <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                </a>
+            </div>
+            
+            <!-- Услуга 2 -->
+            <div class="service-card bg-gray-50 rounded-2xl p-8 hover-lift shadow-soft shadow-hover animate-on-scroll border border-gray-100"
+                 data-delay="100">
+                <div class="bg-gradient-primary w-16 h-16 rounded-xl flex items-center justify-center mb-6">
+                    <i class="fas fa-snowflake text-white text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Кондиционирование</h3>
+                <p class="text-gray-600 mb-6">
+                    Установка сплит-систем, мульти-сплит, VRF систем с гарантией.
+                </p>
+                <a href="services.html#conditioning" class="text-blue-600 font-semibold hover:text-blue-800 transition flex items-center">
+                    Подробнее <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                </a>
+            </div>
+            
+            <!-- Услуга 3 -->
+            <div class="service-card bg-gray-50 rounded-2xl p-8 hover-lift shadow-soft shadow-hover animate-on-scroll border border-gray-100"
+                 data-delay="200">
+                <div class="bg-gradient-primary w-16 h-16 rounded-xl flex items-center justify-center mb-6">
+                    <i class="fas fa-ruler-combined text-white text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Проектирование</h3>
+                <p class="text-gray-600 mb-6">
+                    Разработка проектной документации с учетом всех нормативов.
+                </p>
+                <a href="services.html#design" class="text-blue-600 font-semibold hover:text-blue-800 transition flex items-center">
+                    Подробнее <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                </a>
+            </div>
+            
+            <!-- Услуга 4 -->
+            <div class="service-card bg-gray-50 rounded-2xl p-8 hover-lift shadow-soft shadow-hover animate-on-scroll border border-gray-100"
+                 data-delay="300">
+                <div class="bg-gradient-primary w-16 h-16 rounded-xl flex items-center justify-center mb=6">
+                    <i class="fas fa-headset text-white text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Обслуживание</h3>
+                <p class="text-gray-600 mb-6">
+                    Регулярное ТО, диагностика и ремонт климатических систем.
+                </p>
+                <a href="services.html#maintenance" class="text-blue-600 font-semibold hover:text-blue-800 transition flex items-center">
+                    Подробнее <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Форма заявки -->
+    <section id="calculator" class="py-20 bg-gradient-to-r from-blue-900 to-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden">
+                <div class="md:flex">
+                    <!-- Левая часть с формой -->
+                    <div class="md:w-1/2 p-10">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-4">Рассчитайте стоимость</h2>
+                        <p class="text-gray-600 mb-8">Оставьте заявку и получите детальный расчет в течение 1 часа</p>
+
+                        <form id="main-form" class="space-y-6">
+                            <div>
+                                <label class="block text-gray-700 mb-2">Ваше имя</label>
+                                <input type="text"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                                    placeholder="Иван Иванов" required>
+                            </div>
+
+                            <div>
+                                <label class="block text-gray-700 mb-2">Телефон</label>
+                                <input type="tel"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                                    placeholder="+7 (999) 123-45-67" required>
+                            </div>
+
+                            <div>
+                                <label class="block text-gray-700 mb-2">Тип услуги</label>
+                                <select
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                                    <option value="" disabled selected>Выберите услугу</option>
+                                    <option value="ventilation">Вентиляция</option>
+                                    <option value="conditioning">Кондиционирование</option>
+                                    <option value="project">Проектирование</option>
+                                    <option value="maintenance">Обслуживание</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-gray-700 mb-2">Комментарий</label>
+                                <textarea
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition h-32"
+                                    placeholder="Опишите вашу задачу..."></textarea>
+                            </div>
+
+                            <button type="submit"
+                                class="w-full bg-gradient-primary hover:opacity-90 text-white py-4 rounded-lg font-semibold text-lg transition shadow-lg hover:shadow-xl">
+                                Отправить заявку
+                            </button>
+
+                            <p class="text-sm text-gray-500 text-center">
+                                Нажимая кнопку, вы соглашаетесь с
+                                <a href="#" class="text-blue-600 hover:underline">политикой конфиденциальности</a>
+                            </p>
+                        </form>
+                    </div>
+
+                    <!-- Правая часть с информацией -->
+                    <div class="md:w-1/2 bg-gradient-to-br from-blue-600 to-purple-700 p-10 text-white">
+                        <h3 class="text-2xl font-bold mb-6">Почему выбирают нас?</h3>
+
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-white/20 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-check text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-2">Бесплатный выезд инженера</h4>
+                                    <p class="text-white/80">В течение 24 часов после заявки</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="bg-white/20 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-check text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-2">Гарантия 5 лет</h4>
+                                    <p class="text-white/80">На все виды монтажных работ</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="bg-white/20 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-check text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-2">Официальный договор</h4>
+                                    <p class="text-white/80">С поэтапной оплатой работ</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="bg-white/20 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-check text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-2">Сертифицированные специалисты</h4>
+                                    <p class="text-white/80">С опытом работы от 5 лет</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-10 pt-8 border-t border-white/20">
+                            <div class="flex items-center">
+                                <div class="mr-4">
+                                    <i class="fas fa-headset text-3xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-2xl font-bold">+7 (999) 123-45-67</p>
+                                    <p class="text-white/80">Ежедневно с 9:00 до 21:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <!-- Колонка 1 -->
+                <div>
+                    <a href="index.html" class="text-3xl font-bold mb-6 inline-block">
+                        <span class="text-white">Air</span>
+                        <span class="text-blue-400">Tech</span>
+                    </a>
+                    <p class="text-gray-400 mb-6">
+                        Профессиональный монтаж и обслуживание систем вентиляции и кондиционирования с 2012 года.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-blue-600 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-blue-500 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-green-500 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-red-600 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Колонка 2 -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Контакты</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-blue-400 mt-1 mr-3"></i>
+                            <span class="text-gray-400">Москва, ул. Примерная, д. 10</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-blue-400 mr-3"></i>
+                            <a href="tel:+79991234567" class="text-gray-400 hover:text-white transition">+7 (999)
+                                123-45-67</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-blue-400 mr-3"></i>
+                            <a href="mailto:info@airtech.ru"
+                                class="text-gray-400 hover:text-white transition">info@airtech.ru</a>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-clock text-blue-400 mt-1 mr-3"></i>
+                            <span class="text-gray-400">Пн-Пт: 9:00-19:00<br>Сб: 10:00-16:00</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Колонка 3 -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Услуги</h4>
+                    <ul class="space-y-3">
+                        <li><a href="services.html#ventilation" class="text-gray-400 hover:text-white transition">Монтаж
+                                вентиляции</a></li>
+                        <li><a href="services.html#conditioning"
+                                class="text-gray-400 hover:text-white transition">Кондиционирование</a></li>
+                        <li><a href="services.html#design"
+                                class="text-gray-400 hover:text-white transition">Проектирование</a></li>
+                        <li><a href="services.html#maintenance"
+                                class="text-gray-400 hover:text-white transition">Обслуживание</a></li>
+                        <li><a href="services.html#measurements"
+                                class="text-gray-400 hover:text-white transition">Замеры и диагностика</a></li>
+                    </ul>
+                </div>
+
+                <!-- Колонка 4 -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Компания</h4>
+                    <ul class="space-y-3">
+                        <li><a href="portfolio.html" class="text-gray-400 hover:text-white transition">Проекты</a></li>
+                        <li><a href="solutions.html" class="text-gray-400 hover:text-white transition">Готовые
+                                решения</a></li>
+                        <li><a href="products.html" class="text-gray-400 hover:text-white transition">Оборудование</a>
+                        </li>
+                        <li><a href="faq.html" class="text-gray-400 hover:text-white transition">Вопросы и ответы</a>
+                        </li>
+                        <li><a href="contacts.html" class="text-gray-400 hover:text-white transition">Контакты</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 mb-4 md:mb-0">© 2024 AirTech. Все права защищены.</p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white transition">Политика конфиденциальности</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">Договор оферты</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">Карта сайта</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно -->
+    <div id="modal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-8 relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Заказать обратный звонок</h3>
+            <p class="text-gray-600 mb-6">Мы перезвоним вам в течение 15 минут</p>
+
+            <form class="space-y-4">
+                <input type="text" placeholder="Ваше имя"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
+
+                <input type="tel" placeholder="Телефон"
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
+
+                <button type="submit"
+                    class="w-full bg-gradient-primary hover:opacity-90 text-white py-3 rounded-lg font-semibold">
+                    Заказать звонок
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Мобильное меню
+        document.getElementById('mobile-menu-button').addEventListener('click', function () {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Модальное окно
+        function openModal() {
+            document.getElementById('modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Закрытие модального по клику на фон
+        document.getElementById('modal').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Обработка форм
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+
+                submitBtn.textContent = 'Отправляется...';
+                submitBtn.disabled = true;
+
+                // Имитация отправки
+                setTimeout(() => {
+                    submitBtn.textContent = 'Отправлено!';
+                    submitBtn.classList.remove('bg-gradient-primary');
+                    submitBtn.classList.add('bg-green-500');
+
+                    setTimeout(() => {
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                        submitBtn.classList.remove('bg-green-500');
+                        submitBtn.classList.add('bg-gradient-primary');
+                        this.reset();
+
+                        if (form.id === 'main-form') {
+                            alert('Спасибо! Мы свяжемся с вами в течение 1 часа.');
+                        } else {
+                            closeModal();
+                            alert('Мы перезвоним вам в течение 15 минут!');
+                        }
+                    }, 2000);
+                }, 1500);
+            });
+        });
+
+        // GSAP анимации
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Анимация элементов при скролле
+        gsap.utils.toArray('.hover-scale').forEach(element => {
+            gsap.from(element, {
+                scrollTrigger: {
+                    trigger: element,
+                    start: "top 85%",
+                    toggleActions: "play none none none"
+                },
+                opacity: 0,
+                y: 50,
+                duration: 1
+            });
+        });
+
+        // Плавный скролл для якорей
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+    <!-- Простой скрипт для обновления иконки корзины -->
+<script>
+    // Обновляем иконку корзины на всех страницах
+    document.addEventListener('DOMContentLoaded', function() {
+        function updateCartIcon() {
+            const cart = JSON.parse(localStorage.getItem('airtech_cart')) || [];
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            const cartCount = document.getElementById('cart-count');
+            const mobileCartCount = document.getElementById('mobile-cart-count');
+            
+            [cartCount, mobileCartCount].forEach(element => {
+                if (element) {
+                    if (totalItems > 0) {
+                        element.textContent = totalItems > 99 ? '99+' : totalItems;
+                        element.classList.remove('hidden');
+                    } else {
+                        element.classList.add('hidden');
+                    }
+                }
+            });
+        }
+        
+        updateCartIcon();
+    });
+</script>
+</body>
+
+</html>

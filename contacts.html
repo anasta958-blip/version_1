@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты | AirTech - Контакты и схема проезда</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Manrope', sans-serif; }
+        .contact-card { transition: all 0.3s ease; }
+        .contact-card:hover { transform: translateY(-5px); }
+        .map-container { height: 500px; }
+        #map { height: 100%; width: 100%; border-radius: 16px; }
+        .working-hours .day { border-bottom: 1px solid #e2e8f0; padding: 12px 0; }
+        .working-hours .day:last-child { border-bottom: none; }
+    </style>
+    <!-- Яндекс Карты -->
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш_ключ_api&lang=ru_RU" type="text/javascript"></script>
+</head>
+<body class="bg-gray-50">
+    <!-- Навигация -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-lg shadow-sm z-50">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="text-2xl font-bold">
+                    <span class="text-gray-900">Air</span>
+                    <span class="text-blue-600">Tech</span>
+                </a>
+                <div class="hidden lg:flex items-center space-x-10">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600">Главная</a>
+                    <a href="services.html" class="text-gray-700 hover:text-blue-600">Услуги</a>
+                    <a href="products.html" class="text-gray-700 hover:text-blue-600">Оборудование</a>
+                    <a href="solutions.html" class="text-gray-700 hover:text-blue-600">Решения</a>
+                    <a href="portfolio.html" class="text-gray-700 hover:text-blue-600">Проекты</a>
+                    <a href="faq.html" class="text-gray-700 hover:text-blue-600">FAQ</a>
+                    <a href="contacts.html" class="text-blue-600 font-semibold">Контакты</a>
+                </div>
+                <a href="tel:+79991234567" class="hidden lg:inline text-gray-900 font-semibold">
+                    <i class="fas fa-phone mr-2"></i>+7 (999) 123-45-67
+                </a>
+                 <!-- Иконка корзины -->
+    <a href="cart.html" class="relative">
+        <i class="fas fa-shopping-cart text-gray-700 hover:text-blue-600 text-xl transition"></i>
+        <span id="cart-count" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center hidden">0</span>
+    </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Заголовок страницы -->
+    <section class="pt-32 pb-20 bg-gradient-to-r from-blue-900 to-gray-900">
+        <div class="container mx-auto px-6">
+            <h1 class="text-5xl font-bold text-white mb-6">Контакты</h1>
+            <p class="text-xl text-gray-300 max-w-3xl">
+                Свяжитесь с нами любым удобным способом. Мы всегда на связи!
+            </p>
+        </div>
+    </section>
+
+    <!-- Контактная информация -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-3 gap-12">
+                <!-- Левая колонка - карточки контактов -->
+                <div class="space-y-6">
+                    <!-- Карточка телефона -->
+                    <div class="contact-card bg-white rounded-2xl shadow-lg p-8">
+                        <div class="flex items-start mb-6">
+                            <div class="bg-blue-100 p-4 rounded-xl mr-4">
+                                <i class="fas fa-phone text-blue-600 text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Телефоны</h3>
+                                <p class="text-gray-600">Звоните в рабочее время или оставляйте заявку на сайте</p>
+                            </div>
+                        </div>
+                        <div class="space-y-3">
+                            <div>
+                                <p class="font-semibold text-gray-700">Основной телефон</p>
+                                <a href="tel:+79991234567" class="text-2xl font-bold text-gray-900 hover:text-blue-600 transition">+7 (999) 123-45-67</a>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-700">Техническая поддержка</p>
+                                <a href="tel:+79998765432" class="text-xl font-bold text-gray-900 hover:text-blue-600 transition">+7 (999) 876-54-32</a>
+                            </div>
+                            <div class="pt-4 border-t">
+                                <p class="text-gray-600 text-sm">Звонок по России бесплатный</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Карточка email -->
+                    <div class="contact-card bg-white rounded-2xl shadow-lg p-8">
+                        <div class="flex items-start mb-6">
+                            <div class="bg-green-100 p-4 rounded-xl mr-4">
+                                <i class="fas fa-envelope text-green-600 text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Электронная почта</h3>
+                                <p class="text-gray-600">Пишите нам по любым вопросам</p>
+                            </div>
+                        </div>
+                        <div class="space-y-3">
+                            <div>
+                                <p class="font-semibold text-gray-700">Общие вопросы</p>
+                                <a href="mailto:info@airtech.ru" class="text-xl font-bold text-gray-900 hover:text-blue-600 transition">info@airtech.ru</a>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-700">Технические вопросы</p>
+                                <a href="mailto:tech@airtech.ru" class="text-xl font-bold text-gray-900 hover:text-blue-600 transition">tech@airtech.ru</a>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-700">Коммерческие предложения</p>
+                                <a href="mailto:sales@airtech.ru" class="text-xl font-bold text-gray-900 hover:text-blue-600 transition">sales@airtech.ru</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Карточка адреса -->
+                    <div class="contact-card bg-white rounded-2xl shadow-lg p-8">
+                        <div class="flex items-start mb-6">
+                            <div class="bg-purple-100 p-4 rounded-xl mr-4">
+                                <i class="fas fa-map-marker-alt text-purple-600 text-2xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Адрес офиса</h3>
+                                <p class="text-gray-600">Приезжайте к нам для личной консультации</p>
+                            </div>
+                        </div>
+                        <div class="space-y-3">
+                            <div>
+                                <p class="font-semibold text-gray-700">Юридический адрес</p>
+                                <p class="text-gray-900">123456, Москва, ул. Примерная, д. 10, офис 305</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-700">Фактический адрес</p>
+                                <p class="text-gray-900">123456, Москва, ул. Примерная, д. 10</p>
+                            </div>
+                            <div class="pt-4 border-t">
+                                <button onclick="openDirectionsModal()" class="text-blue-600 font-semibold hover:text-blue-800">
+                                    <i class="fas fa-directions mr-2"></i>Построить маршрут
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Центральная колонка - форма обратной связи -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white rounded-2xl shadow-lg p-8">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-2">Напишите нам</h2>
+                        <p class="text-gray-600 mb-8">Заполните форму и мы свяжемся с вами в течение 30 минут</p>
+                        
+                        <form id="contact-form" class="space-y-6">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-gray-700 mb-2">Имя *</label>
+                                    <input type="text" 
+                                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                                           placeholder="Иван Иванов"
+                                           required>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-gray-700 mb-2">Телефон *</label>
+                                    <input type="tel" 
+                                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                                           placeholder="+7 (999) 123-45-67"
+                                           required>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 mb-2">Email</label>
+                                <input type="email" 
+                                       class="w-full px=4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                                       placeholder="ivan@example.com">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 mb-2">Тема обращения *</label>
+                                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition" required>
+                                    <option value="" disabled selected>Выберите тему</option>
+                                    <option value="consultation">Консультация</option>
+                                    <option value="calculation">Расчет стоимости</option>
+                                    <option value="project">Заказ проекта</option>
+                                    <option value="service">Обслуживание</option>
+                                    <option value="warranty">Гарантийный случай</option>
+                                    <option value="other">Другое</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 mb-2">Сообщение *</label>
+                                <textarea class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition h-40"
+                                          placeholder="Опишите вашу задачу..."
+                                          required></textarea>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <input type="checkbox" id="privacy" class="mt-1 mr-3" required>
+                                <label for="privacy" class="text-gray-600 text-sm">
+                                    Я согласен с 
+                                    <a href="#" class="text-blue-600 hover:underline">политикой конфиденциальности</a> 
+                                    и даю согласие на обработку персональных данных
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 rounded-lg font-semibold text-lg hover:opacity-90 transition shadow-lg hover:shadow-xl">
+                                Отправить сообщение
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <!-- График работы -->
+                    <div class="bg-white rounded-2xl shadow-lg p-8 mt-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">График работы</h3>
+                        <div class="working-hours">
+                            <div class="day flex justify-between">
+                                <span class="font-semibold">Понедельник - Пятница</span>
+                                <span class="text-gray-700">9:00 - 19:00</span>
+                            </div>
+                            <div class="day flex justify-between">
+                                <span class="font-semibold">Суббота</span>
+                                <span class="text-gray-700">10:00 - 16:00</span>
+                            </div>
+                            <div class="day flex justify-between">
+                                <span class="font-semibold">Воскресенье</span>
+                                <span class="text-gray-700">выходной</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 p-6 bg-blue-50 rounded-xl">
+                            <div class="flex items-center">
+                                <i class="fas fa-clock text-blue-600 text-2xl mr-4"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-900">Срочный вызов</p>
+                                    <p class="text-gray-600">Работаем в выходные и праздничные дни по предварительной записи</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Карта -->
+    <section class="py-20 bg-gradient-to-r from-blue-50 to-purple-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Как нас найти</h2>
+                                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Мы находимся в центре Москвы, в 5 минутах ходьбы от метро
+                </p>
+            </div>
+            
+            <div class="map-container mb-8">
+                <div id="map"></div>
+            </div>
+            
+           <!-- <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-subway text-blue-600 text-2xl mr-4"></i>
+                        <div>
+                            <p class="font-semibold text-gray-900">Метро</p>
+                            <p class="text-gray-600">Станция "Примерная"</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm">5 минут пешком от выхода из метро</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-bus text-green-600 text-2xl mr-4"></i>
+                        <div>
+                            <p class="font-semibold text-gray-900">Автобусы</p>
+                            <p class="text-gray-600">№ 123, 456, 789</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm">Остановка "Ул. Примерная"</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-car text-red-600 text-2xl mr-4"></i>
+                        <div>
+                            <p class="font-semibold text-gray-900">Парковка</p>
+                            <p class="text-gray-600">Бесплатная парковка</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm">20 мест перед офисом</p>
+                </div>
+            </div> -->
+        </div>
+    </section>
+
+    <!-- Реквизиты компании -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="bg-white rounded-2xl shadow-lg p-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-8">Реквизиты компании</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">Юридическая информация</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <p class="font-semibold text-gray-700">Полное наименование</p>
+                                <p class="text-gray-900">ООО "ЭйрТех"</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-700">Сокращенное наименование</p>
+                                <p class="text-gray-900">ООО "ЭйрТех"</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-700">ИНН</p>
+                                <p class="text-gray-900">1234567890</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-700">КПП</p>
+                                <p class="text-gray-900">123456789</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-700">ОГРН</p>
+                                <p class="text-gray-900">1234567890123</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">Банковские реквизиты</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <p class="font-semibold text-gray-700">Банк</p>
+                                <p class="text-gray-900"> "Сбербанк" г. Москва</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-700">БИК</p>
+                                <p class="text-gray-900">123456789</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-700">Расчетный счет</p>
+                                <p class="text-gray-900">123456789123456789</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-700">Корреспондентский счет</p>
+                                <p class="text-gray-900">123456789123456789</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray=700">Директор</p>
+                                <p class="text-gray-900">Иванов Иван Иванович</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-8 pt-8 border-t">
+                    <p class="text-gray-600">
+                        Все работы выполняются на основании официального договора. 
+                        Мы являемся плательщиком НДС. Предоставляем закрывающие документы.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Форма заявки -->
+   <section id="calculator" class="py-20 bg-gradient-to-r from-blue-900 to-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden">
+                <div class="md:flex">
+                    <!-- Левая часть с формой -->
+                    <div class="md:w-1/2 p-10">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-4">Рассчитайте стоимость</h2>
+                        <p class="text-gray-600 mb-8">Оставьте заявку и получите детальный расчет в течение 1 часа</p>
+
+                        <form id="main-form" class="space-y-6">
+                            <div>
+                                <label class="block text-gray-700 mb-2">Ваше имя</label>
+                                <input type="text"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                                    placeholder="Иван Иванов" required>
+                            </div>
+
+                            <div>
+                                <label class="block text-gray-700 mb-2">Телефон</label>
+                                <input type="tel"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                                    placeholder="+7 (999) 123-45-67" required>
+                            </div>
+
+                            <div>
+                                <label class="block text-gray-700 mb-2">Тип услуги</label>
+                                <select
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                                    <option value="" disabled selected>Выберите услугу</option>
+                                    <option value="ventilation">Вентиляция</option>
+                                    <option value="conditioning">Кондиционирование</option>
+                                    <option value="project">Проектирование</option>
+                                    <option value="maintenance">Обслуживание</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-gray-700 mb-2">Комментарий</label>
+                                <textarea
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition h-32"
+                                    placeholder="Опишите вашу задачу..."></textarea>
+                            </div>
+
+                            <button type="submit"
+                                class="w-full bg-gradient-primary hover:opacity-90 text-white py-4 rounded-lg font-semibold text-lg transition shadow-lg hover:shadow-xl">
+                                Отправить заявку
+                            </button>
+
+                            <p class="text-sm text-gray-500 text-center">
+                                Нажимая кнопку, вы соглашаетесь с
+                                <a href="#" class="text-blue-600 hover:underline">политикой конфиденциальности</a>
+                            </p>
+                        </form>
+                    </div>
+
+                    <!-- Правая часть с информацией -->
+                    <div class="md:w-1/2 bg-gradient-to-br from-blue-600 to-purple-700 p-10 text-white">
+                        <h3 class="text-2xl font-bold mb-6">Почему выбирают нас?</h3>
+
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-white/20 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-check text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-2">Бесплатный выезд инженера</h4>
+                                    <p class="text-white/80">В течение 24 часов после заявки</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="bg-white/20 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-check text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-2">Гарантия 5 лет</h4>
+                                    <p class="text-white/80">На все виды монтажных работ</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="bg-white/20 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-check text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-2">Официальный договор</h4>
+                                    <p class="text-white/80">С поэтапной оплатой работ</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="bg-white/20 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-check text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-2">Сертифицированные специалисты</h4>
+                                    <p class="text-white/80">С опытом работы от 5 лет</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-10 pt-8 border-t border-white/20">
+                            <div class="flex items-center">
+                                <div class="mr-4">
+                                    <i class="fas fa-headset text-3xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-2xl font-bold">+7 (999) 123-45-67</p>
+                                    <p class="text-white/80">Ежедневно с 9:00 до 21:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+      <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <!-- Колонка 1 -->
+                <div>
+                    <a href="index.html" class="text-3xl font-bold mb-6 inline-block">
+                        <span class="text-white">Air</span>
+                        <span class="text-blue-400">Tech</span>
+                    </a>
+                    <p class="text-gray-400 mb-6">
+                        Профессиональный монтаж и обслуживание систем вентиляции и кондиционирования с 2012 года.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-blue-600 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-blue-500 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-green-500 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-red-600 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Колонка 2 -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Контакты</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-blue-400 mt-1 mr-3"></i>
+                            <span class="text-gray-400">Москва, ул. Примерная, д. 10</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-blue-400 mr-3"></i>
+                            <a href="tel:+79991234567" class="text-gray-400 hover:text-white transition">+7 (999)
+                                123-45-67</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-blue-400 mr-3"></i>
+                            <a href="mailto:info@airtech.ru"
+                                class="text-gray-400 hover:text-white transition">info@airtech.ru</a>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-clock text-blue-400 mt-1 mr-3"></i>
+                            <span class="text-gray-400">Пн-Пт: 9:00-19:00<br>Сб: 10:00-16:00</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Колонка 3 -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Услуги</h4>
+                    <ul class="space-y-3">
+                        <li><a href="services.html#ventilation" class="text-gray-400 hover:text-white transition">Монтаж
+                                вентиляции</a></li>
+                        <li><a href="services.html#conditioning"
+                                class="text-gray-400 hover:text-white transition">Кондиционирование</a></li>
+                        <li><a href="services.html#design"
+                                class="text-gray-400 hover:text-white transition">Проектирование</a></li>
+                        <li><a href="services.html#maintenance"
+                                class="text-gray-400 hover:text-white transition">Обслуживание</a></li>
+                        <li><a href="services.html#measurements"
+                                class="text-gray-400 hover:text-white transition">Замеры и диагностика</a></li>
+                    </ul>
+                </div>
+
+                <!-- Колонка 4 -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Компания</h4>
+                    <ul class="space-y-3">
+                        <li><a href="portfolio.html" class="text-gray-400 hover:text-white transition">Проекты</a></li>
+                        <li><a href="solutions.html" class="text-gray-400 hover:text-white transition">Готовые
+                                решения</a></li>
+                        <li><a href="products.html" class="text-gray-400 hover:text-white transition">Оборудование</a>
+                        </li>
+                        <li><a href="faq.html" class="text-gray-400 hover:text-white transition">Вопросы и ответы</a>
+                        </li>
+                        <li><a href="contacts.html" class="text-gray-400 hover:text-white transition">Контакты</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 mb-4 md:mb-0">© 2024 AirTech. Все права защищены.</p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white transition">Политика конфиденциальности</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">Договор оферты</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">Карта сайта</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно построения маршрута -->
+    <div id="directions-modal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-2xl w-full p-8">
+            <button onclick="closeDirectionsModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Построить маршрут</h3>
+            <p class="text-gray-600 mb-6">Выберите удобный способ добраться до нашего офиса</p>
+            
+            <div class="space-y-6">
+                <div class="bg-gray-50 rounded-xl p-6">
+                    <h4 class="font-bold text-gray-900 mb-3">На общественном транспорте</h4>
+                    <p class="text-gray-600 mb-4">Метро "Примерная", выход №4. Далее 5 минут пешком по ул. Центральной.</p>
+                    <a href="https://yandex.ru/maps" target="_blank" class="text-blue-600 font-semibold hover:text-blue-800">
+                        <i class="fas fa-external-link-alt mr-2"></i>Открыть в Яндекс.Картах
+                    </a>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-6">
+                    <h4 class="font-bold text-gray-900 mb-3">На автомобиле</h4>
+                    <p class="text-gray-600 mb-4">Координаты для навигатора: 55.7558, 37.6173. Бесплатная парковка у офиса.</p>
+                    <a href="https://yandex.ru/navi" target="_blank" class="text-blue-600 font-semibold hover:text-blue-800">
+                        <i class="fas fa-external-link-alt mr-2"></i>Построить маршрут на авто
+                    </a>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-6">
+                    <h4 class="font-bold text-gray-900 mb-3">Такси</h4>
+                    <p class="text-gray-600 mb-4">Адрес для такси: Москва, ул. Примерная, д. 10</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white bg-yellow-500 px-4 py-2 rounded-lg hover:bg-yellow-600">
+                            Яндекс.Такси
+                        </a>
+                        <a href="#" class="text-white bg-black px-4 py-2 rounded-lg hover:bg-gray-800">
+                            Uber
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Инициализация Яндекс.Карт
+        ymaps.ready(init);
+        
+        function init() {
+            const map = new ymaps.Map("map", {
+                center: [55.7558, 37.6173], // Москва
+                zoom: 15,
+                controls: ['zoomControl', 'fullscreenControl']
+            });
+            
+            // Добавление метки
+            const placemark = new ymaps.Placemark([55.7558, 37.6173], {
+                hintContent: 'AirTech - Офис компании',
+                balloonContent: '<b>AirTech</b><br>ул. Примерная, д. 10<br>Пн-Пт: 9:00-19:00'
+            }, {
+                iconLayout: 'default#image',
+                iconImageHref: 'https://cdn-icons-png.flaticon.com/512/684/684908.png',
+                iconImageSize: [40, 40],
+                iconImageOffset: [-20, -40]
+            });
+            
+            map.geoObjects.add(placemark);
+            
+            // Добавление элементов управления
+            map.controls.add('zoomControl', { 
+                float: 'none', 
+                position: { top: 20, right: 20 } 
+            });
+            map.controls.add('fullscreenControl', { 
+                float: 'none', 
+                position: { top: 60, right: 20 } 
+            });
+        }
+        
+        // Обработка формы обратной связи
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Отправляется...';
+            submitBtn.disabled = true;
+            
+            // Имитация отправки
+            setTimeout(() => {
+                submitBtn.textContent = 'Отправлено!';
+                submitBtn.classList.remove('bg-gradient-to-r', 'from-blue-600', 'to-purple-600');
+                submitBtn.classList.add('bg-green-500');
+                
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('bg-green-500');
+                    submitBtn.classList.add('bg-gradient-to-r', 'from-blue-600', 'to-purple-600');
+                    this.reset();
+                    alert('Спасибо за обращение! Мы свяжемся с вами в течение 30 минут.');
+                }, 2000);
+            }, 1500);
+        });
+        
+        // Модальное окно построения маршрута
+        function openDirectionsModal() {
+            document.getElementById('directions-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeDirectionsModal() {
+            document.getElementById('directions-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Копирование реквизитов
+        document.querySelectorAll('[data-copy]').forEach(element => {
+            element.addEventListener('click', function() {
+                const text = this.dataset.copy;
+                navigator.clipboard.writeText(text).then(() => {
+                    const original = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-check mr-2"></i>Скопировано!';
+                    setTimeout(() => {
+                        this.innerHTML = original;
+                    }, 2000);
+                });
+            });
+        });
+        
+        // Быстрые действия
+        document.addEventListener('DOMContentLoaded', function() {
+            // Определение местоположения пользователя
+            if (navigator.geolocation) {
+                const locationBtn = document.createElement('button');
+                locationBtn.className = 'fixed bottom-6 right-6 bg-blue-600 text-white p-4 rounded-full shadow-lg z-40 hover:bg-blue-700 transition';
+                locationBtn.innerHTML = '<i class="fas fa-location-arrow"></i>';
+                locationBtn.title = 'Построить маршрут от вашего местоположения';
+                locationBtn.onclick = function() {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        const userLat = position.coords.latitude;
+                        const userLon = position.coords.longitude;
+                        const url = `https://yandex.ru/maps/?rtext=${userLat},${userLon}~55.7558,37.6173&rtt=auto`;
+                        window.open(url, '_blank');
+                    });
+                };
+                document.body.appendChild(locationBtn);
+            }
+            
+            // Быстрый звонок
+            const callBtn = document.createElement('a');
+            callBtn.href = 'tel:+79991234567';
+            callBtn.className = 'fixed bottom-6 right-24 bg-green-500 text-white p-4 rounded-full shadow-lg z-40 hover:bg-green-600 transition';
+            callBtn.innerHTML = '<i class="fas fa-phone"></i>';
+            callBtn.title = 'Быстрый звонок';
+            document.body.appendChild(callBtn);
+            
+            // WhatsApp
+            const whatsappBtn = document.createElement('a');
+            whatsappBtn.href = 'https://wa.me/79991234567';
+            whatsappBtn.target = '_blank';
+            whatsappBtn.className = 'fixed bottom-6 right-44 bg-green-600 text-white p-4 rounded-full shadow-lg z-40 hover:bg-green-700 transition';
+            whatsappBtn.innerHTML = '<i class="fab fa-whatsapp"></i>';
+            whatsappBtn.title = 'Написать в WhatsApp';
+            document.body.appendChild(whatsappBtn);
+        });
+    </script>
+    <!-- Простой скрипт для обновления иконки корзины -->
+<script>
+    // Обновляем иконку корзины на всех страницах
+    document.addEventListener('DOMContentLoaded', function() {
+        function updateCartIcon() {
+            const cart = JSON.parse(localStorage.getItem('airtech_cart')) || [];
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            const cartCount = document.getElementById('cart-count');
+            const mobileCartCount = document.getElementById('mobile-cart-count');
+            
+            [cartCount, mobileCartCount].forEach(element => {
+                if (element) {
+                    if (totalItems > 0) {
+                        element.textContent = totalItems > 99 ? '99+' : totalItems;
+                        element.classList.remove('hidden');
+                    } else {
+                        element.classList.add('hidden');
+                    }
+                }
+            });
+        }
+        
+        updateCartIcon();
+    });
+</script>
+</body>
+</html>

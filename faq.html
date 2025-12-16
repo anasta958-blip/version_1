@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вопросы и ответы | AirTech - FAQ по вентиляции и кондиционированию</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Manrope', sans-serif; }
+        .faq-item { transition: all 0.3s ease; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+        .faq-item.active .faq-answer { max-height: 500px; }
+        .faq-item.active .faq-toggle i { transform: rotate(180deg); }
+        .search-highlight { background-color: #fff3cd; padding: 2px 4px; border-radius: 2px; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Навигация -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-lg shadow-sm z-50">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="text-2xl font-bold">
+                    <span class="text-gray-900">Air</span>
+                    <span class="text-blue-600">Tech</span>
+                </a>
+                <div class="hidden lg:flex items-center space-x-10">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600">Главная</a>
+                    <a href="services.html" class="text-gray-700 hover:text-blue-600">Услуги</a>
+                    <a href="products.html" class="text-gray-700 hover:text-blue-600">Оборудование</a>
+                    <a href="solutions.html" class="text-gray-700 hover:text-blue-600">Решения</a>
+                    <a href="portfolio.html" class="text-gray-700 hover:text-blue-600">Проекты</a>
+                    <a href="faq.html" class="text-blue-600 font-semibold">FAQ</a>
+                    <a href="contacts.html" class="text-gray-700 hover:text-blue-600">Контакты</a>
+                </div>
+                <a href="tel:+79991234567" class="hidden lg:inline text-gray-900 font-semibold">
+                    <i class="fas fa-phone mr-2"></i>+7 (999) 123-45-67
+                </a>
+                 <!-- Иконка корзины -->
+    <a href="cart.html" class="relative">
+        <i class="fas fa-shopping-cart text-gray-700 hover:text-blue-600 text-xl transition"></i>
+        <span id="cart-count" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center hidden">0</span>
+    </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Заголовок страницы -->
+    <section class="pt-32 pb-20 bg-gradient-to-r from-blue-900 to-gray-900">
+        <div class="container mx-auto px-6">
+            <h1 class="text-5xl font-bold text-white mb-6">Вопросы и ответы</h1>
+            <p class="text-xl text-gray-300 max-w-3xl">
+                Ответы на самые частые вопросы о вентиляции, кондиционировании и наших услугах
+            </p>
+        </div>
+    </section>
+
+    <!-- Поиск по FAQ -->
+    <section class="py-10 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-3xl mx-auto">
+                <div class="relative">
+                    <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    <input type="text" 
+                           id="faq-search" 
+                           placeholder="Введите ваш вопрос или ключевое слово..."
+                           class="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
+                </div>
+                <p class="text-gray-600 text-sm mt-3">
+                    Попробуйте поискать: "монтаж", "стоимость", "гарантия", "обслуживание"
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Основной контент FAQ -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-3 gap-12">
+                <!-- Левая колонка - навигация -->
+                <div class="lg:col-span-1">
+                    <div class="sticky top-32">
+                        <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Категории вопросов</h3>
+                            <div class="space-y-2">
+                                <button class="faq-category w-full text-left px-4 py-3 rounded-lg hover:bg-gray-50 transition" data-category="all">
+                                    <span class="font-semibold">Все вопросы</span>
+                                    <span class="text-gray-500 text-sm ml-2">(48)</span>
+                                </button>
+                                <button class="faq-category w-full text-left px-4 py-3 rounded-lg hover:bg-gray-50 transition" data-category="installation">
+                                    <span class="font-semibold">Монтаж и установка</span>
+                                    <span class="text-gray-500 text-sm ml-2">(12)</span>
+                                </button>
+                                <button class="faq-category w-full text-left px-4 py-3 rounded-lg hover:bg-gray-50 transition" data-category="equipment">
+                                    <span class="font-semibold">Оборудование</span>
+                                    <span class="text-gray-500 text-sm ml-2">(10)</span>
+                                </button>
+                                <button class="faq-category w-full text-left px-4 py-3 rounded-lg hover:bg-gray-50 transition" data-category="price">
+                                    <span class="font-semibold">Стоимость и оплата</span>
+                                    <span class="text-gray-500 text-sm ml-2">(8)</span>
+                                </button>
+                                <button class="faq-category w-full text-left px-4 py-3 rounded-lg hover:bg-gray-50 transition" data-category="warranty">
+                                    <span class="font-semibold">Гарантия и обслуживание</span>
+                                    <span class="text-gray-500 text-sm ml-2">(7)</span>
+                                </button>
+                                <button class="faq-category w-full text-left px-4 py-3 rounded-lg hover:bg-gray-50 transition" data-category="design">
+                                    <span class="font-semibold">Проектирование</span>
+                                    <span class="text-gray-500 text-sm ml-2">(6)</span>
+                                </button>
+                                <button class="faq-category w-full text-left px-4 py-3 rounded-lg hover:bg-gray-50 transition" data-category="other">
+                                    <span class="font-semibold">Прочие вопросы</span>
+                                    <span class="text-gray-500 text-sm ml-2">(5)</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-6 text-white">
+                            <h3 class="text-xl font-bold mb-4">Не нашли ответ?</h3>
+                            <p class="mb-6">Задайте свой вопрос нашим специалистам. Ответим в течение 30 минут!</p>
+                            <button onclick="openQuestionModal()" class="w-full bg-white text-blue-600 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
+                                Задать вопрос
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Правая колонка - вопросы -->
+                <div class="lg:col-span-2">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-8">Популярные вопросы</h2>
+                    
+                    <div class="space-y-4" id="faq-container">
+                        
+                        <!-- Вопрос 1 -->
+                        <div class="faq-item bg-white rounded-xl shadow-sm border" data-category="installation">
+                            <div class="faq-question p-6 cursor-pointer flex justify-between items-center">
+                                <h3 class="text-lg font-semibold text-gray-900">
+                                    Сколько времени занимает монтаж сплит-системы?
+                                </h3>
+                                <div class="faq-toggle text-blue-600">
+                                    <i class="fas fa-chevron-down transition-transform"></i>
+                                </div>
+                            </div>
+                            <div class="faq-answer px-6">
+                                <div class="pb-6">
+                                    <p class="text-gray-600 mb-4">
+                                        Стандартный монтаж одной сплит-системы занимает от 3 до 6 часов. Конкретное время зависит от:
+                                    </p>
+                                    <ul class="list-disc pl-5 space-y-2 text-gray-600">
+                                        <li>Сложности трассы (длина, наличие препятствий)</li>
+                                        <li>Типа стены (бетон, кирпич, гипсокартон)</li>
+                                        <li>Необходимости дополнительных работ (штробление, усиление)</li>
+                                        <li>Этажа и доступности наружного блока</li>
+                                    </ul>
+                                    <p class="text-gray-600 mt-4">
+                                        Мы всегда заранее оцениваем сложность работ и называем точное время монтажа после бесплатного выезда инженера.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Вопрос 2 -->
+                        <div class="faq-item bg-white rounded-xl shadow-sm border" data-category="price">
+                            <div class="faq-question p-6 cursor-pointer flex justify-between items-center">
+                                <h3 class="text-lg font-semibold text-gray-900">
+                                    Что входит в стоимость "под ключ"?
+                                </h3>
+                                <div class="faq-toggle text-blue-600">
+                                    <i class="fas fa-chevron-down transition-transform"></i>
+                                </div>
+                            </div>
+                            <div class="faq-answer px-6">
+                                <div class="pb-6">
+                                    <p class="text-gray-600 mb-4">
+                                        В стоимость "под ключ" входит абсолютно все:
+                                    </p>
+                                    <ul class="list-disc pl-5 space-y-2 text-gray-600">
+                                        <li>Выезд инженера и консультация (бесплатно)</li>
+                                        <li>Разработка проекта и расчеты</li>
+                                        <li>Закупка оборудования по дилерским ценам</li>
+                                        <li>Все расходные материалы (трубы, крепеж, изоляция, кабель)</li>
+                                        <li>Монтажные работы любой сложности</li>
+                                        <li>Пусконаладка и тестирование системы</li>
+                                        <li>Обучение пользованию оборудованием</li>
+                                        <li>Гарантийные документы и договор</li>
+                                        <li>Уборка после монтажа</li>
+                                    </ul>
+                                    <p class="text-gray-600 mt-4">
+                                        Никаких скрытых платежей — вы знаете полную стоимость до начала работ.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Вопрос 3 -->
+                        <div class="faq-item bg-white rounded-xl shadow-sm border" data-category="equipment">
+                            <div class="faq-question p-6 cursor-pointer flex justify-between items-center">
+                                <h3 class="text-lg font-semibold text-gray-900">
+                                    Какое оборудование вы рекомендуете?
+                                </h3>
+                                <div class="faq-toggle text-blue-600">
+                                    <i class="fas fa-chevron-down transition-transform"></i>
+                                </div>
+                            </div>
+                            <div class="faq-answer px-6">
+                                <div class="pb-6">
+                                    <p class="text-gray-600 mb-4">
+                                        Мы работаем только с проверенными брендами, которые зарекомендовали себя надежностью и качеством:
+                                    </p>
+                                    <div class="grid grid-cols-2 gap-4 mb-4">
+                                        <div class="bg-blue-50 rounded-lg p-4">
+                                            <p class="font-semibold text-blue-700">Премиум-класс</p>
+                                            <p class="text-gray-600 text-sm">Daikin, Mitsubishi Electric</p>
+                                            <p class="text-gray-600 text-xs mt-2">Для тех, кто ценит тишину, надежность и энергоэффективность</p>
+                                        </div>
+                                        <div class="bg-green-50 rounded-lg p-4">
+                                            <p class="font-semibold text-green-700">Бизнес-класс</p>
+                                            <p class="text-gray-600 text-sm">Fujitsu, Toshiba, Mitsubishi Heavy</p>
+                                            <p class="text-gray-600 text-xs mt-2">Отличное сочетание цены и качества</p>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-600">
+                                        Мы подбираем оборудование индивидуально под ваш бюджет, требования к шумности, энергоэффективности и дизайну.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Вопрос 4 -->
+                        <div class="faq-item bg-white rounded-xl shadow-sm border" data-category="installation">
+                            <div class="faq-question p-6 cursor-pointer flex justify-between items-center">
+                                <h3 class="text-lg font-semibold text-gray-900">
+                                    Можно ли установить кондиционер зимой?
+                                </h3>
+                                <div class="faq-toggle text-blue-600">
+                                    <i class="fas fa-chevron-down transition-transform"></i>
+                                </div>
+                            </div>
+                            <div class="faq-answer px-6">
+                                <div class="pb-6">
+                                    <p class="text-gray-600 mb-4">
+                                        Да, монтаж возможен в любое время года, но есть важные нюансы:
+                                    </p>
+                                    <ul class="list-disc pl-5 space-y-2 text-gray-600">
+                                        <li><strong>При температуре выше -5°C</strong> — монтаж проводится по стандартной технологии</li>
+                                        <li><strong>При температуре от -5°C до -10°C</strong> — требуются дополнительные меры (прогрев фреоновых трасс, использование зимнего набора)</li>
+                                        <li><strong>При температуре ниже -10°C</strong> — монтаж возможен только в исключительных случаях с применением специального оборудования</li>
+                                    </ul>
+                                    <p class="text-gray-600 mt-4">
+                                        Мы используем профессиональное оборудование для зимнего монтажа и даем полную гарантию на работы независимо от сезона.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Вопрос 5 -->
+                        <div class="faq-item bg-white rounded-xl shadow-sm border" data-category="warranty">
+                            <div class="faq-question p-6 cursor-pointer flex justify-between items-center">
+                                <h3 class="text-lg font-semibold text-gray-900">
+                                    Какая гарантия на работы и оборудование?
+                                </h3>
+                                <div class="faq-toggle text-blue-600">
+                                    <i class="fas fa-chevron-down transition-transform"></i>
+                                </div>
+                            </div>
+                            <div class="faq-answer px-6">
+                                <div class="pb-6">
+                                    <p class="text-gray-600 mb-4">
+                                        Мы предоставляем расширенную гарантию:
+                                    </p>
+                                    <div class="grid grid-cols-2 gap-4 mb-4">
+                                        <div class="bg-blue-50 rounded-lg p-4">
+                                            <p class="font-semibold text-blue-700">На оборудование</p>
+                                            <p class="text-2xl font-bold text-blue-600">3-5 лет</p>
+                                            <p class="text-gray-600 text-sm">В зависимости от бренда</p>
+                                        </div>
+                                        <div class="bg-green-50 rounded-lg p-4">
+                                            <p class="font-semibold text-green-700">На монтажные работы</p>
+                                            <p class="text-2xl font-bold text-green-600">5 лет</p>
+                                            <p class="text-gray-600 text-sm">Самая длинная гарантия на рынке</p>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-600">
+                                        В течение гарантийного срока мы бесплатно устраняем любые неисправности, возникшие по нашей вине. Все гарантийные обязательства закреплены в договоре.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Вопрос 6 -->
+                        <div class="faq-item bg-white rounded-xl shadow-sm border" data-category="design">
+                            <div class="faq-question p=6 cursor-pointer flex justify-between items-center">
+                                <h3 class="text-lg font-semibold text-gray-900">
+                                    Нужно ли проектирование для квартиры?
+                                </h3>
+                                <div class="faq-toggle text-blue-600">
+                                    <i class="fas fa-chevron-down transition-transform"></i>
+                                </div>
+                            </div>
+                            <div class="faq-answer px-6">
+                                <div class="pb-6">
+                                    <p class="text-gray-600 mb-4">
+                                        Для стандартной установки одной сплит-системы проектирование не требуется. Однако мы рекомендуем разработку проекта в следующих случаях:
+                                    </p>
+                                    <ul class="list-disc pl-5 space-y-2 text-gray-600">
+                                        <li>Установка нескольких кондиционеров</li>
+                                        <li>Монтаж мульти-сплит или VRF системы</li>
+                                        <li>Установка приточно-вытяжной вентиляции</li>
+                                        <li>Сложная планировка помещения</li>
+                                        <li>Наличие подвесных потолков или фальш-стен</li>
+                                        <li>Требования к дизайну интерьера</li>
+                                    </ul>
+                                    <p class="text-gray-600 mt-4">
+                                        Проектирование позволяет избежать ошибок, оптимизировать стоимость и получить идеальный результат.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Вопрос 7 -->
+                        <div class="faq-item bg-white rounded-xl shadow-sm border" data-category="other">
+                            <div class="faq-question p-6 cursor-pointer flex justify-between items-center">
+                                <h3 class="text-lg font-semibold text-gray-900">
+                                    Как часто нужно обслуживать кондиционер?
+                                </h3>
+                                <div class="faq-toggle text-blue-600">
+                                    <i class="fas fa-chevron-down transition-transform"></i>
+                                </div>
+                            </div>
+                            <div class="faq-answer px-6">
+                                <div class="pb-6">
+                                    <p class="text-gray-600 mb-4">
+                                        Регулярность обслуживания зависит от интенсивности использования:
+                                    </p>
+                                    <div class="space-y-3 mb-4">
+                                        <div class="flex items-center">
+                                            <div class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold mr-3">
+                                                1-2 раза в год
+                                            </div>
+                                            <span class="text-gray-600">Для бытового использования</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <div class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold mr-3">
+                                                2-4 раза в год
+                                            </div>
+                                            <span class="text-gray-600">Для офисов и коммерческих помещений</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <div class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-semibold mr-3">
+                                                Ежемесячно
+                                            </div>
+                                            <span class="text-gray-600">Для производственных помещений</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-600">
+                                        Мы предлагаем договоры на годовое обслуживание с фиксированной стоимостью. Это выгоднее разовых вызовов и гарантирует бесперебойную работу оборудования.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Вопрос 8 -->
+                        <div class="faq-item bg-white rounded-xl shadow-sm border" data-category="price">
+                            <div class="faq-question p-6 cursor-pointer flex justify-between items-center">
+                                <h3 class="text-lg font-semibold text-gray-900">
+                                    Возможна ли рассрочка или кредит?
+                                </h3>
+                                <div class="faq-toggle text-blue-600">
+                                    <i class="fas fa-chevron-down transition-transform"></i>
+                                </div>
+                            </div>
+                            <div class="faq-answer px=6">
+                                <div class="pb-6">
+                                    <p class="text-gray-600 mb-4">
+                                        Да, мы предлагаем несколько вариантов рассрочки:
+                                    </p>
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                                        <div class="bg-white border rounded-lg p-4">
+                                            <p class="font-semibold text-gray-900">Беспроцентная рассрочка</p>
+                                            <p class="text-2xl font-bold text-blue-600">0%</p>
+                                            <p class="text-gray-600 text-sm">до 6 месяцев</p>
+                                        </div>
+                                        <div class="bg-white border rounded-lg p-4">
+                                            <p class="font-semibold text-gray-900">Рассрочка от банков</p>
+                                            <p class="text-2xl font-bold text-blue-600">5.9%</p>
+                                            <p class="text-gray-600 text-sm">до 24 месяцев</p>
+                                        </div>
+                                        <div class="bg-white border rounded-lg p-4">
+                                            <p class="font-semibold text-gray-900">Поэтапная оплата</p>
+                                            <p class="text-gray-600">30% - 40% - 30%</p>
+                                            <p class="text-gray-600 text-sm">по этапам работ</p>
+                                        </div>
+                                    </div>
+                                    <p class="text-gray-600">
+                                        Все условия обсуждаются индивидуально. Мы сотрудничаем с ведущими банками и можем предложить оптимальный вариант.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Полезные статьи -->
+                    <div class="mt-16">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-8">Полезные статьи</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-white rounded-xl shadow-sm border p-6">
+                                <h3 class="text-lg font-bold text-gray-900 mb-3">Как выбрать кондиционер для квартиры</h3>
+                                <p class="text-gray-600 mb-4">Полное руководство по подбору мощности, типа и функций кондиционера.</p>
+                                <a href="#" class="text-blue-600 font-semibold hover:text-blue-800">Читать статью →</a>
+                            </div>
+                            <div class="bg-white rounded-xl shadow-sm border p-6">
+                                <h3 class="text-lg font-bold text-gray-900 mb-3">Экономия на отоплении с рекуперацией</h3>
+                                <p class="text-gray-600 mb-4">Как системы с рекуперацией позволяют экономить до 80% на отоплении.</p>
+                                <a href="#" class="text-blue-600 font-semibold hover:text-blue-800">Читать статью →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Форма заявки -->
+    <section id="calculator" class="py-20 bg-gradient-to-r from-blue-900 to-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden">
+                <div class="md:flex">
+                    <!-- Левая часть с формой -->
+                    <div class="md:w-1/2 p-10">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-4">Рассчитайте стоимость</h2>
+                        <p class="text-gray-600 mb-8">Оставьте заявку и получите детальный расчет в течение 1 часа</p>
+
+                        <form id="main-form" class="space-y-6">
+                            <div>
+                                <label class="block text-gray-700 mb-2">Ваше имя</label>
+                                <input type="text"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                                    placeholder="Иван Иванов" required>
+                            </div>
+
+                            <div>
+                                <label class="block text-gray-700 mb-2">Телефон</label>
+                                <input type="tel"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                                    placeholder="+7 (999) 123-45-67" required>
+                            </div>
+
+                            <div>
+                                <label class="block text-gray-700 mb-2">Тип услуги</label>
+                                <select
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                                    <option value="" disabled selected>Выберите услугу</option>
+                                    <option value="ventilation">Вентиляция</option>
+                                    <option value="conditioning">Кондиционирование</option>
+                                    <option value="project">Проектирование</option>
+                                    <option value="maintenance">Обслуживание</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-gray-700 mb-2">Комментарий</label>
+                                <textarea
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition h-32"
+                                    placeholder="Опишите вашу задачу..."></textarea>
+                            </div>
+
+                            <button type="submit"
+                                class="w-full bg-gradient-primary hover:opacity-90 text-white py-4 rounded-lg font-semibold text-lg transition shadow-lg hover:shadow-xl">
+                                Отправить заявку
+                            </button>
+
+                            <p class="text-sm text-gray-500 text-center">
+                                Нажимая кнопку, вы соглашаетесь с
+                                <a href="#" class="text-blue-600 hover:underline">политикой конфиденциальности</a>
+                            </p>
+                        </form>
+                    </div>
+
+                    <!-- Правая часть с информацией -->
+                    <div class="md:w-1/2 bg-gradient-to-br from-blue-600 to-purple-700 p-10 text-white">
+                        <h3 class="text-2xl font-bold mb-6">Почему выбирают нас?</h3>
+
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-white/20 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-check text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-2">Бесплатный выезд инженера</h4>
+                                    <p class="text-white/80">В течение 24 часов после заявки</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="bg-white/20 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-check text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-2">Гарантия 5 лет</h4>
+                                    <p class="text-white/80">На все виды монтажных работ</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="bg-white/20 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-check text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-2">Официальный договор</h4>
+                                    <p class="text-white/80">С поэтапной оплатой работ</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="bg-white/20 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-check text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-2">Сертифицированные специалисты</h4>
+                                    <p class="text-white/80">С опытом работы от 5 лет</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-10 pt-8 border-t border-white/20">
+                            <div class="flex items-center">
+                                <div class="mr-4">
+                                    <i class="fas fa-headset text-3xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-2xl font-bold">+7 (999) 123-45-67</p>
+                                    <p class="text-white/80">Ежедневно с 9:00 до 21:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+      <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <!-- Колонка 1 -->
+                <div>
+                    <a href="index.html" class="text-3xl font-bold mb-6 inline-block">
+                        <span class="text-white">Air</span>
+                        <span class="text-blue-400">Tech</span>
+                    </a>
+                    <p class="text-gray-400 mb-6">
+                        Профессиональный монтаж и обслуживание систем вентиляции и кондиционирования с 2012 года.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-blue-600 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-blue-500 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-green-500 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-red-600 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Колонка 2 -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Контакты</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-blue-400 mt-1 mr-3"></i>
+                            <span class="text-gray-400">Москва, ул. Примерная, д. 10</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-blue-400 mr-3"></i>
+                            <a href="tel:+79991234567" class="text-gray-400 hover:text-white transition">+7 (999)
+                                123-45-67</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-blue-400 mr-3"></i>
+                            <a href="mailto:info@airtech.ru"
+                                class="text-gray-400 hover:text-white transition">info@airtech.ru</a>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-clock text-blue-400 mt-1 mr-3"></i>
+                            <span class="text-gray-400">Пн-Пт: 9:00-19:00<br>Сб: 10:00-16:00</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Колонка 3 -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Услуги</h4>
+                    <ul class="space-y-3">
+                        <li><a href="services.html#ventilation" class="text-gray-400 hover:text-white transition">Монтаж
+                                вентиляции</a></li>
+                        <li><a href="services.html#conditioning"
+                                class="text-gray-400 hover:text-white transition">Кондиционирование</a></li>
+                        <li><a href="services.html#design"
+                                class="text-gray-400 hover:text-white transition">Проектирование</a></li>
+                        <li><a href="services.html#maintenance"
+                                class="text-gray-400 hover:text-white transition">Обслуживание</a></li>
+                        <li><a href="services.html#measurements"
+                                class="text-gray-400 hover:text-white transition">Замеры и диагностика</a></li>
+                    </ul>
+                </div>
+
+                <!-- Колонка 4 -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Компания</h4>
+                    <ul class="space-y-3">
+                        <li><a href="portfolio.html" class="text-gray-400 hover:text-white transition">Проекты</a></li>
+                        <li><a href="solutions.html" class="text-gray-400 hover:text-white transition">Готовые
+                                решения</a></li>
+                        <li><a href="products.html" class="text-gray-400 hover:text-white transition">Оборудование</a>
+                        </li>
+                        <li><a href="faq.html" class="text-gray-400 hover:text-white transition">Вопросы и ответы</a>
+                        </li>
+                        <li><a href="contacts.html" class="text-gray-400 hover:text-white transition">Контакты</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 mb-4 md:mb-0">© 2024 AirTech. Все права защищены.</p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white transition">Политика конфиденциальности</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">Договор оферты</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">Карта сайта</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно вопроса -->
+    <div id="question-modal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-8">
+            <button onclick="closeQuestionModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Задать вопрос специалисту</h3>
+            <p class="text-gray-600 mb-6">Ответим в течение 30 минут в рабочее время</p>
+            
+            <form id="question-form" class="space-y-4">
+                <input type="text" 
+                       placeholder="Ваше имя" 
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                       required>
+                
+                <input type="tel" 
+                       placeholder="Телефон" 
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                       required>
+                
+                <input type="email" 
+                       placeholder="Email (необязательно)" 
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
+                
+                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
+                    <option value="" disabled selected>Категория вопроса</option>
+                    <option value="installation">Монтаж и установка</option>
+                    <option value="equipment">Оборудование</option>
+                    <option value="price">Стоимость и оплата</option>
+                    <option value="warranty">Гарантия и обслуживание</option>
+                    <option value="other">Другое</option>
+                </select>
+                
+                <textarea placeholder="Ваш вопрос" 
+                          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none h-32"></textarea>
+                
+                <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:opacity-90 transition">
+                    Отправить вопрос
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Открытие/закрытие FAQ
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+        
+        // Поиск по FAQ
+        const faqSearch = document.getElementById('faq-search');
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqSearch.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question h3').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                
+                if (searchTerm === '' || question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    
+                    // Подсветка текста
+                    if (searchTerm !== '') {
+                        highlightText(item, searchTerm);
+                    } else {
+                        removeHighlights(item);
+                    }
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+        
+        function highlightText(element, term) {
+            const question = element.querySelector('.faq-question h3');
+            const answer = element.querySelector('.faq-answer');
+            
+            // Удаляем старые подсветки
+            removeHighlights(element);
+            
+            // Подсветка в вопросе
+            const questionText = question.innerHTML;
+            const highlightedQuestion = questionText.replace(
+                new RegExp(`(${term})`, 'gi'),
+                '<span class="search-highlight">$1</span>'
+            );
+            question.innerHTML = highlightedQuestion;
+            
+            // Подсветка в ответе
+            const answerText = answer.innerHTML;
+            const highlightedAnswer = answerText.replace(
+                new RegExp(`(${term})`, 'gi'),
+                '<span class="search-highlight">$1</span>'
+            );
+            answer.innerHTML = highlightedAnswer;
+        }
+        
+        function removeHighlights(element) {
+            const highlights = element.querySelectorAll('.search-highlight');
+            highlights.forEach(highlight => {
+                const parent = highlight.parentNode;
+                parent.replaceChild(document.createTextNode(highlight.textContent), highlight);
+                parent.normalize();
+            });
+        }
+        
+        // Фильтрация по категориям
+        document.querySelectorAll('.faq-category').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Сброс активного класса
+                document.querySelectorAll('.faq-category').forEach(b => {
+                    b.classList.remove('bg-blue-50', 'text-blue-600');
+                });
+                
+                // Добавление активного класса
+                this.classList.add('bg-blue-50', 'text-blue-600');
+                
+                // Фильтрация
+                const category = this.dataset.category;
+                const items = document.querySelectorAll('.faq-item');
+                
+                items.forEach(item => {
+                    if (category === 'all' || item.dataset.category === category) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+                
+                // Сброс поиска
+                faqSearch.value = '';
+                removeHighlights(document.querySelector('#faq-container'));
+            });
+        });
+        
+        // Модальное окно вопроса
+        function openQuestionModal() {
+            document.getElementById('question-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeQuestionModal() {
+            document.getElementById('question-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Обработка формы вопроса
+        document.getElementById('question-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Отправляется...';
+            submitBtn.disabled = true;
+            
+            // Имитация отправки
+            setTimeout(() => {
+                submitBtn.textContent = 'Отправлено!';
+                submitBtn.classList.remove('bg-gradient-to-r', 'from-blue-600', 'to-purple-600');
+                submitBtn.classList.add('bg-green-500');
+                
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('bg-green-500');
+                    submitBtn.classList.add('bg-gradient-to-r', 'from-blue-600', 'to-purple-600');
+                    this.reset();
+                    closeQuestionModal();
+                    alert('Спасибо за вопрос! Мы свяжемся с вами в течение 30 минут.');
+                }, 2000);
+            }, 1500);
+        });
+        
+        // Автоматическое открытие FAQ при поиске из поисковой системы
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchQuery = urlParams.get('q');
+        if (searchQuery) {
+            faqSearch.value = searchQuery;
+            faqSearch.dispatchEvent(new Event('input'));
+        }
+    </script>
+    <!-- Простой скрипт для обновления иконки корзины -->
+<script>
+    // Обновляем иконку корзины на всех страницах
+    document.addEventListener('DOMContentLoaded', function() {
+        function updateCartIcon() {
+            const cart = JSON.parse(localStorage.getItem('airtech_cart')) || [];
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            const cartCount = document.getElementById('cart-count');
+            const mobileCartCount = document.getElementById('mobile-cart-count');
+            
+            [cartCount, mobileCartCount].forEach(element => {
+                if (element) {
+                    if (totalItems > 0) {
+                        element.textContent = totalItems > 99 ? '99+' : totalItems;
+                        element.classList.remove('hidden');
+                    } else {
+                        element.classList.add('hidden');
+                    }
+                }
+            });
+        }
+        
+        updateCartIcon();
+    });
+</script>
+</body>
+</html>

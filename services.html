@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Услуги | AirTech - Монтаж вентиляции и кондиционеров</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Manrope', sans-serif; }
+        .bg-gradient-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .hover-scale { transition: transform 0.3s ease; }
+        .hover-scale:hover { transform: translateY(-5px); }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Навигация (такая же как на главной) -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-lg shadow-sm z-50">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="text-2xl font-bold">
+                    <span class="text-gray-900">Air</span>
+                    <span class="text-blue-600">Tech</span>
+                </a>
+                <div class="hidden lg:flex items-center space-x-10">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600">Главная</a>
+                    <a href="services.html" class="text-blue-600 font-semibold">Услуги</a>
+                    <a href="products.html" class="text-gray-700 hover:text-blue-600">Оборудование</a>
+                    <a href="solutions.html" class="text-gray-700 hover:text-blue-600">Решения</a>
+                    <a href="portfolio.html" class="text-gray-700 hover:text-blue-600">Проекты</a>
+                    <a href="faq.html" class="text-gray-700 hover:text-blue-600">FAQ</a>
+                    <a href="contacts.html" class="text-gray-700 hover:text-blue-600">Контакты</a>
+                </div>
+                <a href="tel:+79991234567" class="hidden lg:inline text-gray-900 font-semibold">
+                    <i class="fas fa-phone mr-2"></i>+7 (999) 123-45-67
+                </a>
+                 <!-- Иконка корзины -->
+    <a href="cart.html" class="relative">
+        <i class="fas fa-shopping-cart text-gray-700 hover:text-blue-600 text-xl transition"></i>
+        <span id="cart-count" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center hidden">0</span>
+    </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Заголовок страницы -->
+    <section class="pt-32 pb-20 bg-gradient-to-r from-blue-900 to-gray-900">
+        <div class="container mx-auto px-6">
+            <h1 class="text-5xl font-bold text-white mb-6">Наши услуги</h1>
+            <p class="text-xl text-gray-300 max-w-3xl">
+                Полный комплекс услуг по проектированию, монтажу и обслуживанию систем вентиляции и кондиционирования
+            </p>
+        </div>
+    </section>
+
+    <!-- Детализация услуг -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <!-- Монтаж вентиляции -->
+            <div id="ventilation" class="mb-32 scroll-mt-24">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div class="inline-block bg-blue-100 text-blue-700 px-4 py-2 rounded-full font-semibold mb-4">
+                            Основная услуга
+                        </div>
+                        <h2 class="text-4xl font-bold text-gray-900 mb-6">Монтаж вентиляции</h2>
+                        <p class="text-gray-600 text-lg mb-8">
+                            Профессиональная установка приточно-вытяжных систем любой сложности с гарантией качества и соблюдением всех нормативов.
+                        </p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-green-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-check text-green-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-1">Приточные системы</h4>
+                                    <p class="text-gray-600">Установка приточных установок с подогревом и фильтрацией воздуха</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-green-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-check text-green-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-1">Вытяжная вентиляция</h4>
+                                    <p class="text-gray-600">Монтаж вытяжных систем для кухонь, санузлов и технических помещений</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="bg-green-100 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-check text-green-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-1">Рекуперация тепла</h4>
+                                    <p class="text-gray-600">Установка систем с рекуператорами для экономии энергии до 80%</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-10">
+                            <a href="#calculator" class="bg-gradient-primary text-white px-8 py-4 rounded-lg font-semibold hover:opacity-90 transition">
+                                Заказать монтаж
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8">
+                        <div class="text-center mb-8">
+                            <div class="inline-block bg-blue-600 text-white px-6 py-2 rounded-full font-bold text-lg">
+                                От 25 000 ₽
+                            </div>
+                            <p class="text-gray-600 mt-2">стоимость базового монтажа</p>
+                        </div>
+                        
+                        <h4 class="font-bold text-gray-900 mb-4 text-center">Этапы работ:</h4>
+                        <div class="space-y-4">
+                            <div class="flex items-center bg-white p-4 rounded-xl shadow-sm">
+                                <div class="bg-blue-100 text-blue-700 w-8 h-8 rounded-full flex items-center justify-center font-bold mr-4">1</div>
+                                <span>Выезд инженера и замеры</span>
+                            </div>
+                            <div class="flex items-center bg-white p-4 rounded-xl shadow-sm">
+                                <div class="bg-blue-100 text-blue-700 w-8 h-8 rounded-full flex items-center justify-center font-bold mr-4">2</div>
+                                <span>Разработка проекта</span>
+                            </div>
+                            <div class="flex items-center bg-white p-4 rounded-xl shadow-sm">
+                                <div class="bg-blue-100 text-blue-700 w-8 h-8 rounded-full flex items-center justify-center font-bold mr-4">3</div>
+                                <span>Подбор оборудования</span>
+                            </div>
+                            <div class="flex items-center bg-white p-4 rounded-xl shadow-sm">
+                                <div class="bg-blue-100 text-blue-700 w-8 h-8 rounded-full flex items-center justify-center font-bold mr-4">4</div>
+                                <span>Монтажные работы</span>
+                            </div>
+                            <div class="flex items-center bg-white p-4 rounded-xl shadow-sm">
+                                <div class="bg-blue-100 text-blue-700 w-8 h-8 rounded-full flex items-center justify-center font-bold mr-4">5</div>
+                                <span>Пусконаладка и сдача</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Кондиционирование -->
+            <div id="conditioning" class="mb-32 scroll-mt-24">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="order-2 lg:order-1">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Кондиционирование" 
+                             class="rounded-2xl shadow-xl">
+                    </div>
+                    <div class="order-1 lg:order-2">
+                        <div class="inline-block bg-blue-100 text-blue-700 px-4 py-2 rounded-full font-semibold mb-4">
+                            Популярная услуга
+                        </div>
+                        <h2 class="text-4xl font-bold text-gray-900 mb-6">Кондиционирование</h2>
+                        
+                        <div class="mb-8">
+                            <h3 class="font-bold text-gray-900 mb-3">Типы систем:</h3>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="bg-white p-4 rounded-xl shadow-sm border">
+                                    <i class="fas fa-home text-blue-600 mb-2"></i>
+                                    <p class="font-semibold">Сплит-системы</p>
+                                </div>
+                                <div class="bg-white p-4 rounded-xl shadow-sm border">
+                                    <i class="fas fa-building text-blue-600 mb-2"></i>
+                                    <p class="font-semibold">Мульти-сплит</p>
+                                </div>
+                                <div class="bg-white p-4 rounded-xl shadow-sm border">
+                                    <i class="fas fa-industry text-blue-600 mb-2"></i>
+                                    <p class="font-semibold">VRF системы</p>
+                                </div>
+                                <div class="bg-white p-4 rounded-xl shadow-sm border">
+                                    <i class="fas fa-warehouse text-blue-600 mb-2"></i>
+                                    <p class="font-semibold">Чиллеры</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p class="text-gray-600 mb-6">
+                            Установка климатического оборудования любой сложности: от бытовых сплит-систем до промышленных VRF систем.
+                        </p>
+                        
+                        <div class="mt-10">
+                            <a href="#calculator" class="bg-gradient-primary text-white px-8 py-4 rounded-lg font-semibold hover:opacity-90 transition">
+                                Рассчитать стоимость
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Остальные услуги -->
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Проектирование -->
+                <div id="design" class="bg-white rounded-2xl p-8 shadow-lg hover-scale scroll-mt-24">
+                    <div class="text-blue-600 text-3xl mb-6">
+                        <i class="fas fa-ruler-combined"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Проектирование</h3>
+                    <p class="text-gray-600 mb-6">
+                        Разработка проектной документации с учетом всех нормативов СНИП, ГОСТ и индивидуальных требований.
+                    </p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Теплотехнический расчет</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Аэродинамический расчет</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Разработка 3D модели</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Согласование проекта</span>
+                        </li>
+                    </ul>
+                    <a href="#calculator" class="text-blue-600 font-semibold hover:text-blue-800">
+                        Заказать проект →
+                    </a>
+                </div>
+                
+                <!-- Обслуживание -->
+                <div id="maintenance" class="bg-white rounded-2xl p-8 shadow-lg hover-scale scroll-mt-24">
+                    <div class="text-blue-600 text-3xl mb-6">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Обслуживание</h3>
+                    <p class="text-gray-600 mb-6">
+                        Регулярное ТО, диагностика, чистка и ремонт климатических систем. Заключаем договоры на годовое обслуживание.
+                    </p>
+                    <div class="mb-8">
+                        <div class="bg-blue-50 rounded-xl p-4 mb-4">
+                            <p class="font-semibold text-blue-700">Годовое обслуживание</p>
+                            <p class="text-gray-600 text-sm">от 12 000 ₽/год</p>
+                        </div>
+                        <div class="bg-green-50 rounded-xl p-4">
+                            <p class="font-semibold text-green-700">Разовое ТО</p>
+                            <p class="text-gray-600 text-sm">от 3 500 ₽</p>
+                        </div>
+                    </ul>
+                    <a href="#calculator" class="text-blue-600 font-semibold hover:text-blue-800">
+                        Заказать ТО →
+                    </a>
+                </div>
+                
+                <!-- Замеры и диагностика -->
+                <div id="measurements" class="bg-white rounded-2xl p-8 shadow-lg hover-scale scroll-mt-24">
+                    <div class="text-blue-600 text-3xl mb-6">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Замеры и диагностика</h3>
+                    <p class="text-gray-600 mb-6">
+                        Профессиональные замеры параметров воздуха, аэродинамические испытания и диагностика существующих систем.
+                    </p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Замер скорости воздуха</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Измерение температуры</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Проверка давления</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-3"></i>
+                            <span>Диагностика неисправностей</span>
+                        </li>
+                    </ul>
+                    <a href="#calculator" class="text-blue-600 font-semibold hover:text-blue-800">
+                        Вызвать специалиста →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <section id="calculator" class="py-20 bg-gradient-to-r from-blue-900 to-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden">
+                <div class="md:flex">
+                    <!-- Левая часть с формой -->
+                    <div class="md:w-1/2 p-10">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-4">Рассчитайте стоимость</h2>
+                        <p class="text-gray-600 mb-8">Оставьте заявку и получите детальный расчет в течение 1 часа</p>
+
+                        <form id="main-form" class="space-y-6">
+                            <div>
+                                <label class="block text-gray-700 mb-2">Ваше имя</label>
+                                <input type="text"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                                    placeholder="Иван Иванов" required>
+                            </div>
+
+                            <div>
+                                <label class="block text-gray-700 mb-2">Телефон</label>
+                                <input type="tel"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                                    placeholder="+7 (999) 123-45-67" required>
+                            </div>
+
+                            <div>
+                                <label class="block text-gray-700 mb-2">Тип услуги</label>
+                                <select
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                                    <option value="" disabled selected>Выберите услугу</option>
+                                    <option value="ventilation">Вентиляция</option>
+                                    <option value="conditioning">Кондиционирование</option>
+                                    <option value="project">Проектирование</option>
+                                    <option value="maintenance">Обслуживание</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-gray-700 mb-2">Комментарий</label>
+                                <textarea
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition h-32"
+                                    placeholder="Опишите вашу задачу..."></textarea>
+                            </div>
+
+                            <button type="submit"
+                                class="w-full bg-gradient-primary hover:opacity-90 text-white py-4 rounded-lg font-semibold text-lg transition shadow-lg hover:shadow-xl">
+                                Отправить заявку
+                            </button>
+
+                            <p class="text-sm text-gray-500 text-center">
+                                Нажимая кнопку, вы соглашаетесь с
+                                <a href="#" class="text-blue-600 hover:underline">политикой конфиденциальности</a>
+                            </p>
+                        </form>
+                    </div>
+
+                    <!-- Правая часть с информацией -->
+                    <div class="md:w-1/2 bg-gradient-to-br from-blue-600 to-purple-700 p-10 text-white">
+                        <h3 class="text-2xl font-bold mb-6">Почему выбирают нас?</h3>
+
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-white/20 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-check text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-2">Бесплатный выезд инженера</h4>
+                                    <p class="text-white/80">В течение 24 часов после заявки</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="bg-white/20 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-check text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-2">Гарантия 5 лет</h4>
+                                    <p class="text-white/80">На все виды монтажных работ</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="bg-white/20 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-check text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-2">Официальный договор</h4>
+                                    <p class="text-white/80">С поэтапной оплатой работ</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="bg-white/20 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-check text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-2">Сертифицированные специалисты</h4>
+                                    <p class="text-white/80">С опытом работы от 5 лет</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-10 pt-8 border-t border-white/20">
+                            <div class="flex items-center">
+                                <div class="mr-4">
+                                    <i class="fas fa-headset text-3xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-2xl font-bold">+7 (999) 123-45-67</p>
+                                    <p class="text-white/80">Ежедневно с 9:00 до 21:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+      <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <!-- Колонка 1 -->
+                <div>
+                    <a href="index.html" class="text-3xl font-bold mb-6 inline-block">
+                        <span class="text-white">Air</span>
+                        <span class="text-blue-400">Tech</span>
+                    </a>
+                    <p class="text-gray-400 mb-6">
+                        Профессиональный монтаж и обслуживание систем вентиляции и кондиционирования с 2012 года.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-blue-600 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-blue-500 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-green-500 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-red-600 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Колонка 2 -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Контакты</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-blue-400 mt-1 mr-3"></i>
+                            <span class="text-gray-400">Москва, ул. Примерная, д. 10</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-blue-400 mr-3"></i>
+                            <a href="tel:+79991234567" class="text-gray-400 hover:text-white transition">+7 (999)
+                                123-45-67</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-blue-400 mr-3"></i>
+                            <a href="mailto:info@airtech.ru"
+                                class="text-gray-400 hover:text-white transition">info@airtech.ru</a>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-clock text-blue-400 mt-1 mr-3"></i>
+                            <span class="text-gray-400">Пн-Пт: 9:00-19:00<br>Сб: 10:00-16:00</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Колонка 3 -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Услуги</h4>
+                    <ul class="space-y-3">
+                        <li><a href="services.html#ventilation" class="text-gray-400 hover:text-white transition">Монтаж
+                                вентиляции</a></li>
+                        <li><a href="services.html#conditioning"
+                                class="text-gray-400 hover:text-white transition">Кондиционирование</a></li>
+                        <li><a href="services.html#design"
+                                class="text-gray-400 hover:text-white transition">Проектирование</a></li>
+                        <li><a href="services.html#maintenance"
+                                class="text-gray-400 hover:text-white transition">Обслуживание</a></li>
+                        <li><a href="services.html#measurements"
+                                class="text-gray-400 hover:text-white transition">Замеры и диагностика</a></li>
+                    </ul>
+                </div>
+
+                <!-- Колонка 4 -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Компания</h4>
+                    <ul class="space-y-3">
+                        <li><a href="portfolio.html" class="text-gray-400 hover:text-white transition">Проекты</a></li>
+                        <li><a href="solutions.html" class="text-gray-400 hover:text-white transition">Готовые
+                                решения</a></li>
+                        <li><a href="products.html" class="text-gray-400 hover:text-white transition">Оборудование</a>
+                        </li>
+                        <li><a href="faq.html" class="text-gray-400 hover:text-white transition">Вопросы и ответы</a>
+                        </li>
+                        <li><a href="contacts.html" class="text-gray-400 hover:text-white transition">Контакты</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 mb-4 md:mb-0">© 2024 AirTech. Все права защищены.</p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white transition">Политика конфиденциальности</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">Договор оферты</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">Карта сайта</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Скролл к якорям
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 120,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+    <!-- Простой скрипт для обновления иконки корзины -->
+<script>
+    // Обновляем иконку корзины на всех страницах
+    document.addEventListener('DOMContentLoaded', function() {
+        function updateCartIcon() {
+            const cart = JSON.parse(localStorage.getItem('airtech_cart')) || [];
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            const cartCount = document.getElementById('cart-count');
+            const mobileCartCount = document.getElementById('mobile-cart-count');
+            
+            [cartCount, mobileCartCount].forEach(element => {
+                if (element) {
+                    if (totalItems > 0) {
+                        element.textContent = totalItems > 99 ? '99+' : totalItems;
+                        element.classList.remove('hidden');
+                    } else {
+                        element.classList.add('hidden');
+                    }
+                }
+            });
+        }
+        
+        updateCartIcon();
+    });
+</script>
+</body>
+</html>

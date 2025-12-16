@@ -1,0 +1,14 @@
+{
+  "name": "airtech-website",
+  "version": "1.0.0",
+  "description": "Сайт компании по монтажу вентиляции и кондиционирования",
+  "scripts": {
+    "dev": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+    "build": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.3",
+    "autoprefixer": "^10.4.15",
+    "postcss": "^8.4.29"
+  }
+}

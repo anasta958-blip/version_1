@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина | AirTech</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Manrope', sans-serif; }
+        .cart-item { transition: all 0.3s ease; }
+        .empty-cart { animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Навигация -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-lg shadow-sm z-50">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="text-2xl font-bold">
+                    <span class="text-gray-900">Air</span>
+                    <span class="text-blue-600">Tech</span>
+                </a>
+                
+                <!-- Десктопное меню -->
+                <div class="hidden lg:flex items-center space-x-10">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 font-medium">Главная</a>
+                    <a href="services.html" class="text-gray-700 hover:text-blue-600 font-medium">Услуги</a>
+                    <a href="products.html" class="text-gray-700 hover:text-blue-600 font-medium">Оборудование</a>
+                    <a href="solutions.html" class="text-gray-700 hover:text-blue-600 font-medium">Решения</a>
+                    <a href="portfolio.html" class="text-gray-700 hover:text-blue-600 font-medium">Проекты</a>
+                    <a href="faq.html" class="text-gray-700 hover:text-blue-600 font-medium">FAQ</a>
+                    <a href="contacts.html" class="text-gray-700 hover:text-blue-600 font-medium">Контакты</a>
+                </div>
+                
+                <!-- Контакты и корзина -->
+                <div class="hidden lg:flex items-center space-x-6">
+                    <a href="tel:+79991234567" class="text-gray-900 font-semibold hover:text-blue-600 transition">
+                        <i class="fas fa-phone mr-2"></i>+7 (999) 123-45-67
+                    </a>
+                    
+                    <!-- Иконка корзины -->
+                    <a href="cart.html" class="relative">
+                        <i class="fas fa-shopping-cart text-gray-700 hover:text-blue-600 text-xl transition"></i>
+                        <span id="cart-count" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center hidden">0</span>
+                    </a>
+                    
+                    <button onclick="openModal()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition shadow-md hover:shadow-lg">
+                        Заказать звонок
+                    </button>
+                </div>
+                
+                <!-- Мобильное меню -->
+                <button id="mobile-menu-button" class="lg:hidden text-gray-700">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            
+            <!-- Мобильное меню (скрытое) -->
+            <div id="mobile-menu" class="hidden lg:hidden py-4 border-t">
+                <div class="flex flex-col space-y-4">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 font-medium">Главная</a>
+                    <a href="services.html" class="text-gray-700 hover:text-blue-600 font-medium">Услуги</a>
+                    <a href="products.html" class="text-gray-700 hover:text-blue-600 font-medium">Оборудование</a>
+                    <a href="solutions.html" class="text-gray-700 hover:text-blue-600 font-medium">Решения</a>
+                    <a href="portfolio.html" class="text-gray-700 hover:text-blue-600 font-medium">Проекты</a>
+                    <a href="faq.html" class="text-gray-700 hover:text-blue-600 font-medium">FAQ</a>
+                    <a href="contacts.html" class="text-gray-700 hover:text-blue-600 font-medium">Контакты</a>
+                    <a href="cart.html" class="text-gray-700 hover:text-blue-600 font-medium flex items-center">
+                        <i class="fas fa-shopping-cart mr-2"></i>Корзина
+                        <span id="mobile-cart-count" class="ml-auto bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center hidden">0</span>
+                    </a>
+                    <a href="tel:+79991234567" class="text-gray-900 font-semibold mt-4">
+                        <i class="fas fa-phone mr-2"></i>+7 (999) 123-45-67
+                    </a>
+                     <!-- Иконка корзины -->
+    <a href="cart.html" class="relative">
+        <i class="fas fa-shopping-cart text-gray-700 hover:text-blue-600 text-xl transition"></i>
+        <span id="cart-count" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center hidden">0</span>
+    </a>
+                    <button onclick="openModal()" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold mt-2">
+                        Заказать звонок
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Заголовок страницы -->
+    <section class="pt-32 pb-20 bg-gradient-to-r from-blue-900 to-gray-900">
+        <div class="container mx-auto px-6">
+            <h1 class="text-5xl font-bold text-white mb-6">Корзина</h1>
+            <p class="text-xl text-gray-300">Товары, которые вы выбрали для покупки</p>
+        </div>
+    </section>
+
+    <!-- Основное содержимое корзины -->
+    <section class="py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Левая колонка - товары в корзине -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+                        <div class="flex justify-between items-center mb-6">
+                            <h2 class="text-2xl font-bold text-gray-900">Ваша корзина</h2>
+                            <span id="total-items" class="text-gray-600">0 товаров</span>
+                        </div>
+                        
+                        <!-- Список товаров -->
+                        <div id="cart-items" class="space-y-4">
+                            <!-- Товары будут загружены через JavaScript -->
+                        </div>
+                        
+                        <!-- Пустая корзина -->
+                        <div id="empty-cart" class="empty-cart text-center py-12 hidden">
+                            <div class="mb-6">
+                                <i class="fas fa-shopping-cart text-gray-300 text-6xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">Корзина пуста</h3>
+                            <p class="text-gray-600 mb-6">Добавьте товары из каталога оборудования</p>
+                            <a href="products.html" class="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition">
+                                Перейти в каталог
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Дополнительные услуги -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-4">Дополнительные услуги</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between p-4 border rounded-lg">
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="installation" class="mr-3 h-5 w-5">
+                                    <div>
+                                        <label for="installation" class="font-semibold text-gray-900">Монтаж оборудования</label>
+                                        <p class="text-gray-600 text-sm">Профессиональная установка специалистами</p>
+                                    </div>
+                                </div>
+                                <span class="font-bold text-gray-900">от 5 000 ₽</span>
+                            </div>
+                            
+                            <div class="flex items-center justify-between p=4 border rounded-lg">
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="warranty" class="mr-3 h-5 w-5">
+                                    <div>
+                                        <label for="warranty" class="font-semibold text-gray-900">Расширенная гарантия +2 года</label>
+                                        <p class="text-gray-600 text-sm">Общая гарантия 5 лет на оборудование</p>
+                                    </div>
+                                </div>
+                                <span class="font-bold text-gray-900">от 3 000 ₽</span>
+                            </div>
+                            
+                            <div class="flex items-center justify-between p=4 border rounded-lg">
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="delivery" class="mr-3 h-5 w-5">
+                                    <div>
+                                        <label for="delivery" class="font-semibold text-gray-900">Доставка в пределах МКАД</label>
+                                        <p class="text-gray-600 text-sm">Бережная доставка в день заказа</p>
+                                    </div>
+                                </div>
+                                <span class="font-bold text-gray-900">2 500 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Правая колонка - итого и оформление -->
+                <div class="lg:col-span-1">
+                    <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-6">Итого</h3>
+                        
+                        <div class="space-y-4 mb-6">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Товары</span>
+                                <span id="subtotal" class="font-semibold">0 ₽</span>
+                            </div>
+                            
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Дополнительные услуги</span>
+                                <span id="services-total" class="font-semibold">0 ₽</span>
+                            </div>
+                            
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Доставка</span>
+                                <span id="delivery-cost" class="font-semibold">0 ₽</span>
+                            </div>
+                            
+                            <div class="border-t pt-4">
+                                <div class="flex justify-between text-lg">
+                                    <span class="font-bold text-gray-900">Общая стоимость</span>
+                                    <span id="total-price" class="font-bold text-blue-600 text-xl">0 ₽</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button id="checkout-button" onclick="openCheckoutModal()" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 rounded-lg font-semibold text-lg hover:opacity-90 transition disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                            Оформить заказ
+                        </button>
+                        
+                        <p class="text-gray-500 text-sm text-center mt-4">
+                            Нажимая кнопку, вы соглашаетесь с условиями покупки
+                        </p>
+                    </div>
+                    
+                    <!-- Промокод -->
+                    <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-6">
+                        <h4 class="font-bold text-gray-900 mb-3">Есть промокод?</h4>
+                        <div class="flex">
+                            <input type="text" 
+                                   id="promo-code" 
+                                   placeholder="Введите промокод" 
+                                   class="flex-1 px-4 py-3 border border-gray-300 rounded-l-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
+                            <button id="apply-promo" class="bg-blue-600 text-white px-4 py-3 rounded-r-lg hover:bg-blue-700 transition">
+                                Применить
+                            </button>
+                        </div>
+                        <p id="promo-message" class="text-sm mt-2 hidden"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Подвал -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <!-- Колонка 1 -->
+                <div>
+                    <a href="index.html" class="text-3xl font-bold mb-6 inline-block">
+                        <span class="text-white">Air</span>
+                        <span class="text-blue-400">Tech</span>
+                    </a>
+                    <p class="text-gray-400 mb-6">
+                        Профессиональный монтаж и обслуживание систем вентиляции и кондиционирования с 2012 года.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-gray-800 hover:bg-blue-600 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 hover:bg-blue-500 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 hover:bg-green-500 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#" class="bg-gray-800 hover:bg-red-600 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Колонка 2 -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Контакты</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-blue-400 mt-1 mr-3"></i>
+                            <span class="text-gray-400">Москва, ул. Примерная, д. 10</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-blue-400 mr-3"></i>
+                            <a href="tel:+79991234567" class="text-gray-400 hover:text-white transition">+7 (999) 123-45-67</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-blue-400 mr-3"></i>
+                            <a href="mailto:info@airtech.ru" class="text-gray-400 hover:text-white transition">info@airtech.ru</a>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-clock text-blue-400 mt=1 mr-3"></i>
+                            <span class="text-gray-400">Пн-Пт: 9:00-19:00<br>Сб: 10:00-16:00</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Колонка 3 -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Услуги</h4>
+                    <ul class="space-y-3">
+                        <li><a href="services.html#ventilation" class="text-gray-400 hover:text-white transition">Монтаж вентиляции</a></li>
+                        <li><a href="services.html#conditioning" class="text-gray-400 hover:text-white transition">Кондиционирование</a></li>
+                        <li><a href="services.html#design" class="text-gray-400 hover:text-white transition">Проектирование</a></li>
+                        <li><a href="services.html#maintenance" class="text-gray-400 hover:text-white transition">Обслуживание</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Колонка 4 -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Компания</h4>
+                    <ul class="space-y-3">
+                        <li><a href="portfolio.html" class="text-gray-400 hover:text-white transition">Проекты</a></li>
+                        <li><a href="solutions.html" class="text-gray-400 hover:text-white transition">Готовые решения</a></li>
+                        <li><a href="products.html" class="text-gray-400 hover:text-white transition">Оборудование</a></li>
+                        <li><a href="cart.html" class="text-gray-400 hover:text-white transition">Корзина</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 mb-4 md:mb-0">© 2024 AirTech. Все права защищены.</p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white transition">Политика конфиденциальности</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">Договор оферты</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">Карта сайта</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно оформления заказа -->
+    <div id="checkout-modal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-8">
+                <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+                
+                <h3 class="text-2xl font-bold text-gray-900 mb-6">Оформление заказа</h3>
+                
+                <form id="order-form" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-gray-700 mb-2">Имя *</label>
+                            <input type="text" class="w-full px-4 py-3 border rounded-lg" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Телефон *</label>
+                            <input type="tel" class="w-full px-4 py-3 border rounded-lg" required>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-700 mb-2">Email *</label>
+                        <input type="email" class="w-full px-4 py-3 border rounded-lg" required>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-700 mb-2">Адрес доставки</label>
+                        <textarea class="w-full px-4 py-3 border rounded-lg h-24"></textarea>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-gray-700 mb-2">Комментарий к заказу</label>
+                        <textarea class="w-full px-4 py-3 border rounded-lg h-32" placeholder="Особые пожелания, удобное время доставки и т.д."></textarea>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-xl p-6">
+                        <h4 class="font-bold text-gray-900 mb-4">Способ оплаты</h4>
+                        <div class="space-y-3">
+                            <label class="flex items-center p-3 border rounded-lg cursor-pointer">
+                                <input type="radio" name="payment" value="card" class="mr-3" checked>
+                                <div>
+                                    <p class="font-semibold">Оплата картой онлайн</p>
+                                    <p class="text-gray-600 text-sm">Безопасная оплата через банк</p>
+                                </div>
+                            </label>
+                            
+                            <label class="flex items-center p-3 border rounded-lg cursor-pointer">
+                                <input type="radio" name="payment" value="cash" class="mr-3">
+                                <div>
+                                    <p class="font-semibold">Наличными при получении</p>
+                                    <p class="text-gray-600 text-sm">Оплата курьеру при доставке</p>
+                                </div>
+                            </label>
+                            
+                            <label class="flex items-center p=3 border rounded-lg cursor-pointer">
+                                <input type="radio" name="payment" value="invoice" class="mr-3">
+                                <div>
+                                    <p class="font-semibold">По счету для юр. лиц</p>
+                                    <p class="text-gray-600 text-sm">Безналичный расчет по счету</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <input type="checkbox" id="agreement" class="mt-1 mr-3" required>
+                        <label for="agreement" class="text-gray-600 text-sm">
+                            Я согласен с 
+                            <a href="#" class="text-blue-600 hover:underline">условиями покупки</a> 
+                            и даю согласие на обработку персональных данных
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 rounded-lg font-semibold text-lg">
+                        Подтвердить заказ
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/cart.js"></script>
+    <script>
+        // Мобильное меню
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        
+        // Модальное окно оформления заказа
+        function openCheckoutModal() {
+            const cart = getCart();
+            if (cart.length === 0) return;
+            
+            document.getElementById('checkout-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeCheckoutModal() {
+            document.getElementById('checkout-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Применение промокода
+        document.getElementById('apply-promo').addEventListener('click', function() {
+            const promoCode = document.getElementById('promo-code').value;
+            const message = document.getElementById('promo-message');
+            
+            if (promoCode === 'AIR10') {
+                message.textContent = 'Промокод применен! Скидка 10%';
+                message.className = 'text-sm mt-2 text-green-600';
+            } else if (promoCode === 'AIR500') {
+                message.textContent = 'Промокод применен! Скидка 500₽';
+                message.className = 'text-sm mt-2 text-green-600';
+            } else if (promoCode) {
+                message.textContent = 'Промокод недействителен';
+                message.className = 'text-sm mt-2 text-red-600';
+            }
+            
+            message.classList.remove('hidden');
+        });
+        
+        // Форма оформления заказа
+        document.getElementById('order-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Оформляем...';
+            submitBtn.disabled = true;
+            
+            // Имитация отправки заказа
+            setTimeout(() => {
+                submitBtn.textContent = 'Заказ оформлен!';
+                submitBtn.classList.add('bg-green-500');
+                
+                setTimeout(() => {
+                    closeCheckoutModal();
+                    clearCart();
+                    alert('Спасибо за заказ! Мы свяжемся с вами для подтверждения в течение 30 минут.');
+                    window.location.href = 'index.html';
+                }, 2000);
+            }, 2000);
+        });
+        
+        // Обновление стоимости при изменении чекбоксов
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                updateTotalPrice();
+            });
+        });
+    </script>
+</body>
+</html>

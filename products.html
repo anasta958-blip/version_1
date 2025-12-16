@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оборудование | AirTech - Системы кондиционирования и вентиляции</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Manrope', sans-serif; }
+        .filter-active { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .product-card { transition: all 0.3s ease; }
+        .product-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Навигация -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-lg shadow-sm z-50">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="text-2xl font-bold">
+                    <span class="text-gray-900">Air</span>
+                    <span class="text-blue-600">Tech</span>
+                </a>
+                <div class="hidden lg:flex items-center space-x-10">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600">Главная</a>
+                    <a href="services.html" class="text-gray-700 hover:text-blue-600">Услуги</a>
+                    <a href="products.html" class="text-blue-600 font-semibold">Оборудование</a>
+                    <a href="solutions.html" class="text-gray-700 hover:text-blue-600">Решения</a>
+                    <a href="portfolio.html" class="text-gray-700 hover:text-blue-600">Проекты</a>
+                    <a href="faq.html" class="text-gray-700 hover:text-blue-600">FAQ</a>
+                    <a href="contacts.html" class="text-gray-700 hover:text-blue-600">Контакты</a>
+                </div>
+                <a href="tel:+79991234567" class="hidden lg:inline text-gray-900 font-semibold">
+                    <i class="fas fa-phone mr-2"></i>+7 (999) 123-45-67
+                </a>
+                 <!-- Иконка корзины -->
+    <a href="cart.html" class="relative">
+        <i class="fas fa-shopping-cart text-gray-700 hover:text-blue-600 text-xl transition"></i>
+        <span id="cart-count" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center hidden">0</span>
+    </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Заголовок страницы -->
+    <section class="pt-32 pb-20 bg-gradient-to-r from-blue-900 to-gray-900">
+        <div class="container mx-auto px-6">
+            <h1 class="text-5xl font-bold text-white mb-6">Оборудование</h1>
+            <p class="text-xl text-gray-300 max-w-3xl">
+                Мы работаем только с проверенными производителями климатического оборудования премиум и бизнес-класса
+            </p>
+        </div>
+    </section>
+
+    <!-- Фильтры -->
+    <section class="py-10 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900">Каталог оборудования</h2>
+                    <p class="text-gray-600">Выберите тип оборудования или производителя</p>
+                </div>
+                
+                <div class="flex flex-wrap gap-3">
+                    <button class="filter-btn px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition" data-filter="all">
+                        Все товары
+                    </button>
+                    <button class="filter-btn px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition" data-filter="conditioning">
+                        Кондиционеры
+                    </button>
+                    <button class="filter-btn px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition" data-filter="ventilation">
+                        Вентиляция
+                    </button>
+                    <button class="filter-btn px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition" data-filter="daikin">
+                        Daikin
+                    </button>
+                    <button class="filter-btn px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition" data-filter="mitsubishi">
+                        Mitsubishi Electric
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Каталог товаров -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Товар 1 -->
+                <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden" data-category="conditioning daikin">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Daikin FTXS" 
+                             class="w-full h-56 object-cover">
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                Хит продаж
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">Daikin FTXS</h3>
+                                <p class="text-gray-600">Инверторная сплит-система</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-2xl font-bold text-gray-900">42 900 ₽</p>
+                                <p class="text-gray-500 text-sm">с установкой</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-3 mb-6">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Мощность охлаждения:</span>
+                                <span class="font-semibold">2.5 кВт</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Площадь помещения:</span>
+                                <span class="font-semibold">25 м²</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Уровень шума:</span>
+                                <span class="font-semibold">19 дБ</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Класс энергоэффективности:</span>
+                                <span class="font-semibold text-green-600">A+++</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex space-x-4">
+                           <button class="add-to-cart-btn flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:opacity-90 transition"
+        data-id="1"
+        data-name="Daikin FTXS"
+        data-price="42900"
+        data-image="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+    <i class="fas fa-shopping-cart mr-2"></i>В корзину
+</button>
+                            <button class="w-12 h-12 border border-gray-300 rounded-lg flex items-center justify-center hover:bg-gray-50 transition">
+                                <i class="fas fa-heart text-gray-400"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Товар 2 -->
+                <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden" data-category="conditioning mitsubishi">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Mitsubishi Electric MSZ" 
+                             class="w-full h-56 object-cover">
+                    </div>
+                    
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">Mitsubishi Electric MSZ</h3>
+                                <p class="text-gray-600">Премиум сплит-система</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-2xl font-bold text-gray-900">56 500 ₽</p>
+                                <p class="text-gray-500 text-sm">с установкой</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-3 mb-6">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Мощность охлаждения:</span>
+                                <span class="font-semibold">3.5 кВт</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Площадь помещения:</span>
+                                <span class="font-semibold">35 м²</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Уровень шума:</span>
+                                <span class="font-semibold">18 дБ</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Wi-Fi управление:</span>
+                                <span class="font-semibold text-green-600">Да</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex space-x-4">
+                         <button class="add-to-cart-btn flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:opacity-90 transition"
+        data-id="1"
+        data-name="Daikin FTXS"
+        data-price="42900"
+        data-image="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+    <i class="fas fa-shopping-cart mr-2"></i>В корзину
+</button>
+                            <button class="w-12 h-12 border border-gray-300 rounded-lg flex items-center justify-center hover:bg-gray-50 transition">
+                                <i class="fas fa-heart text-gray-400"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Товар 3 -->
+                <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden" data-category="ventilation">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Приточная установка" 
+                             class="w-full h-56 object-cover">
+                    </div>
+                    
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">Breezart 550</h3>
+                                <p class="text-gray-600">Приточная установка с рекуператором</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-2xl font-bold text-gray-900">89 900 ₽</p>
+                                <p class="text-gray-500 text-sm">с установкой</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-3 mb-6">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Производительность:</span>
+                                <span class="font-semibold">550 м³/ч</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Эффективность рекуперации:</span>
+                                <span class="font-semibold">85%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Уровень шума:</span>
+                                <span class="font-semibold">25 дБ</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Площадь помещения:</span>
+                                <span class="font-semibold">до 180 м²</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex space-x-4">
+                          <button class="add-to-cart-btn flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:opacity-90 transition"
+        data-id="1"
+        data-name="Daikin FTXS"
+        data-price="42900"
+        data-image="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+    <i class="fas fa-shopping-cart mr-2"></i>В корзину
+</button>
+                            <button class="w-12 h-12 border border-gray-300 rounded-lg flex items-center justify-center hover:bg-gray-50 transition">
+                                <i class="fas fa-heart text-gray-400"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Товар 4 -->
+                <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden" data-category="conditioning">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1560074557-8bdf0a6dc1b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Канальный кондиционер" 
+                             class="w-full h-56 object-cover">
+                    </div>
+                    
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">Daikin FDXM</h3>
+                                <p class="text-gray-600">Канальный кондиционер</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-2xl font-bold text-gray-900">112 000 ₽</p>
+                                <p class="text-gray-500 text-sm">с установкой</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-3 mb-6">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Мощность охлаждения:</span>
+                                <span class="font-semibold">7.1 кВт</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Площадь помещения:</span>
+                                <span class="font-semibold">70 м²</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Тип размещения:</span>
+                                <span class="font-semibold">Канальный</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Гарантия:</span>
+                                <span class="font-semibold text-green-600">5 лет</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex space-x-4">
+                          <button class="add-to-cart-btn flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:opacity-90 transition"
+        data-id="1"
+        data-name="Daikin FTXS"
+        data-price="42900"
+        data-image="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+    <i class="fas fa-shopping-cart mr-2"></i>В корзину
+</button>
+                            <button class="w-12 h-12 border border-gray-300 rounded-lg flex items-center justify-center hover:bg-gray-50 transition">
+                                <i class="fas fa-heart text-gray-400"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Товар 5 -->
+                <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden" data-category="ventilation">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Рекуператор" 
+                             class="w-full h-56 object-cover">
+                    </div>
+                    
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">VENTS TwinFresh</h3>
+                                <p class="text-gray-600">Компактный рекуператор</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-2xl font-bold text-gray-900">34 500 ₽</p>
+                                <p class="text-gray-500 text-sm">с установкой</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-3 mb-6">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Производительность:</span>
+                                <span class="font-semibold">42 м³/ч</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Эффективность:</span>
+                                <span class="font-semibold">78%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Уровень шума:</span>
+                                <span class="font-semibold">21 дБ</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Диаметр канала:</span>
+                                <span class="font-semibold">150 мм</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex space-x-4">
+                          <button class="add-to-cart-btn flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:opacity-90 transition"
+        data-id="1"
+        data-name="Daikin FTXS"
+        data-price="42900"
+        data-image="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+    <i class="fas fa-shopping-cart mr-2"></i>В корзину
+</button>
+                            <button class="w-12 h-12 border border-gray-300 rounded-lg flex items-center justify-center hover:bg-gray-50 transition">
+                                <i class="fas fa-heart text-gray-400"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Товар 6 -->
+                <div class="product-card bg-white rounded-2xl shadow-lg overflow-hidden" data-category="conditioning mitsubishi">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1560114928-40f1f1eb26a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Мульти-сплит система" 
+                             class="w-full h-56 object-cover">
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                Новинка
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">Mitsubishi Electric CITY MULTI</h3>
+                                <p class="text-gray-600">VRF система</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-2xl font-bold text-gray-900">от 450 000 ₽</p>
+                                <p class="text-gray-500 text-sm">с установкой</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-3 mb-6">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Мощность:</span>
+                                <span class="font-semibold">22.4 кВт</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Кол-во внутренних блоков:</span>
+                                <span class="font-semibold">до 8</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Тип системы:</span>
+                                <span class="font-semibold">VRF</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Для объектов:</span>
+                                <span class="font-semibold">Офисы, магазины</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex space-x-4">
+                          <button class="add-to-cart-btn flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:opacity-90 transition"
+        data-id="1"
+        data-name="Daikin FTXS"
+        data-price="42900"
+        data-image="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+    <i class="fas fa-shopping-cart mr-2"></i>В корзину
+</button>
+                            <button class="w-12 h-12 border border-gray-300 rounded-lg flex items-center justify-center hover:bg-gray-50 transition">
+                                <i class="fas fa-heart text-gray-400"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Бренды -->
+            <div class="mt-20">
+                <h2 class="text-3xl font-bold text-gray-900 text-center mb-10">Наши партнеры</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
+                    <div class="bg-white p-6 rounded-xl shadow-sm flex items-center justify-center">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Daikin_logo.svg" alt="Daikin" class="h-12">
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm flex items-center justify-center">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Mitsubishi_Electric_logo.svg" alt="Mitsubishi Electric" class="h-12">
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm flex items-center justify-center">
+                        <span class="text-2xl font-bold text-gray-800">FUJITSU</span>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm flex items-center justify-center">
+                        <span class="text-2xl font-bold text-gray-800">TOSHIBA</span>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm flex items-center justify-center">
+                        <span class="text-2xl font-bold text-gray-800">Ballu</span>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm flex items-center justify-center">
+                        <span class="text-2xl font-bold text-gray-800">VENTS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Форма заявки -->
+   <section id="calculator" class="py-20 bg-gradient-to-r from-blue-900 to-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden">
+                <div class="md:flex">
+                    <!-- Левая часть с формой -->
+                    <div class="md:w-1/2 p-10">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-4">Рассчитайте стоимость</h2>
+                        <p class="text-gray-600 mb-8">Оставьте заявку и получите детальный расчет в течение 1 часа</p>
+
+                        <form id="main-form" class="space-y-6">
+                            <div>
+                                <label class="block text-gray-700 mb-2">Ваше имя</label>
+                                <input type="text"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                                    placeholder="Иван Иванов" required>
+                            </div>
+
+                            <div>
+                                <label class="block text-gray-700 mb-2">Телефон</label>
+                                <input type="tel"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                                    placeholder="+7 (999) 123-45-67" required>
+                            </div>
+
+                            <div>
+                                <label class="block text-gray-700 mb-2">Тип услуги</label>
+                                <select
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                                    <option value="" disabled selected>Выберите услугу</option>
+                                    <option value="ventilation">Вентиляция</option>
+                                    <option value="conditioning">Кондиционирование</option>
+                                    <option value="project">Проектирование</option>
+                                    <option value="maintenance">Обслуживание</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-gray-700 mb-2">Комментарий</label>
+                                <textarea
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition h-32"
+                                    placeholder="Опишите вашу задачу..."></textarea>
+                            </div>
+
+                            <button type="submit"
+                                class="w-full bg-gradient-primary hover:opacity-90 text-white py-4 rounded-lg font-semibold text-lg transition shadow-lg hover:shadow-xl">
+                                Отправить заявку
+                            </button>
+
+                            <p class="text-sm text-gray-500 text-center">
+                                Нажимая кнопку, вы соглашаетесь с
+                                <a href="#" class="text-blue-600 hover:underline">политикой конфиденциальности</a>
+                            </p>
+                        </form>
+                    </div>
+
+                    <!-- Правая часть с информацией -->
+                    <div class="md:w-1/2 bg-gradient-to-br from-blue-600 to-purple-700 p-10 text-white">
+                        <h3 class="text-2xl font-bold mb-6">Почему выбирают нас?</h3>
+
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-white/20 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-check text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-2">Бесплатный выезд инженера</h4>
+                                    <p class="text-white/80">В течение 24 часов после заявки</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="bg-white/20 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-check text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-2">Гарантия 5 лет</h4>
+                                    <p class="text-white/80">На все виды монтажных работ</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="bg-white/20 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-check text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-2">Официальный договор</h4>
+                                    <p class="text-white/80">С поэтапной оплатой работ</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="bg-white/20 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-check text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-2">Сертифицированные специалисты</h4>
+                                    <p class="text-white/80">С опытом работы от 5 лет</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-10 pt-8 border-t border-white/20">
+                            <div class="flex items-center">
+                                <div class="mr-4">
+                                    <i class="fas fa-headset text-3xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-2xl font-bold">+7 (999) 123-45-67</p>
+                                    <p class="text-white/80">Ежедневно с 9:00 до 21:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+       <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <!-- Колонка 1 -->
+                <div>
+                    <a href="index.html" class="text-3xl font-bold mb-6 inline-block">
+                        <span class="text-white">Air</span>
+                        <span class="text-blue-400">Tech</span>
+                    </a>
+                    <p class="text-gray-400 mb-6">
+                        Профессиональный монтаж и обслуживание систем вентиляции и кондиционирования с 2012 года.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-blue-600 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-blue-500 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-green-500 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-red-600 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Колонка 2 -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Контакты</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-blue-400 mt-1 mr-3"></i>
+                            <span class="text-gray-400">Москва, ул. Примерная, д. 10</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-blue-400 mr-3"></i>
+                            <a href="tel:+79991234567" class="text-gray-400 hover:text-white transition">+7 (999)
+                                123-45-67</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-blue-400 mr-3"></i>
+                            <a href="mailto:info@airtech.ru"
+                                class="text-gray-400 hover:text-white transition">info@airtech.ru</a>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-clock text-blue-400 mt-1 mr-3"></i>
+                            <span class="text-gray-400">Пн-Пт: 9:00-19:00<br>Сб: 10:00-16:00</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Колонка 3 -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Услуги</h4>
+                    <ul class="space-y-3">
+                        <li><a href="services.html#ventilation" class="text-gray-400 hover:text-white transition">Монтаж
+                                вентиляции</a></li>
+                        <li><a href="services.html#conditioning"
+                                class="text-gray-400 hover:text-white transition">Кондиционирование</a></li>
+                        <li><a href="services.html#design"
+                                class="text-gray-400 hover:text-white transition">Проектирование</a></li>
+                        <li><a href="services.html#maintenance"
+                                class="text-gray-400 hover:text-white transition">Обслуживание</a></li>
+                        <li><a href="services.html#measurements"
+                                class="text-gray-400 hover:text-white transition">Замеры и диагностика</a></li>
+                    </ul>
+                </div>
+
+                <!-- Колонка 4 -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Компания</h4>
+                    <ul class="space-y-3">
+                        <li><a href="portfolio.html" class="text-gray-400 hover:text-white transition">Проекты</a></li>
+                        <li><a href="solutions.html" class="text-gray-400 hover:text-white transition">Готовые
+                                решения</a></li>
+                        <li><a href="products.html" class="text-gray-400 hover:text-white transition">Оборудование</a>
+                        </li>
+                        <li><a href="faq.html" class="text-gray-400 hover:text-white transition">Вопросы и ответы</a>
+                        </li>
+                        <li><a href="contacts.html" class="text-gray-400 hover:text-white transition">Контакты</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 mb-4 md:mb-0">© 2024 AirTech. Все права защищены.</p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white transition">Политика конфиденциальности</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">Договор оферты</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">Карта сайта</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно товара -->
+    <div id="product-modal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-8">
+                <button onclick="closeProductModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <img id="modal-image" src="" alt="" class="rounded-xl w-full">
+                    </div>
+                    <div>
+                        <h3 id="modal-title" class="text-2xl font-bold text-gray-900 mb-2"></h3>
+                        <p id="modal-description" class="text-gray-600 mb-4"></p>
+                        <p id="modal-price" class="text-3xl font-bold text-gray-900 mb-6"></p>
+                        
+                        <div id="modal-specs" class="space-y-3 mb-8">
+                            <!-- Спецификации будут заполнены JS -->
+                        </div>
+                        
+                        <form class="space-y-4">
+                            <input type="text" placeholder="Ваше имя" class="w-full px-4 py-3 border rounded-lg">
+                            <input type="tel" placeholder="Телефон" class="w-full px-4 py-3 border rounded-lg">
+                            <textarea placeholder="Комментарий" class="w-full px-4 py-3 border rounded-lg h-32"></textarea>
+                           <button class="add-to-cart-btn flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:opacity-90 transition"
+        data-id="1"
+        data-name="Daikin FTXS"
+        data-price="42900"
+        data-image="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+    <i class="fas fa-shopping-cart mr-2"></i>В корзину
+</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Фильтрация товаров
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Сброс активного класса
+                document.querySelectorAll('.filter-btn').forEach(b => {
+                    b.classList.remove('filter-active');
+                    b.classList.add('bg-gray-100');
+                });
+                
+                // Добавление активного класса
+                this.classList.remove('bg-gray-100');
+                this.classList.add('filter-active');
+                
+                // Фильтрация
+                const filter = this.dataset.filter;
+                const products = document.querySelectorAll('.product-card');
+                
+                products.forEach(product => {
+                    if (filter === 'all' || product.dataset.category.includes(filter)) {
+                        product.style.display = 'block';
+                    } else {
+                        product.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Модальное окно товара
+        const productsData = {
+            1: {
+                title: 'Daikin FTXS',
+                description: 'Инверторная сплит-система премиум-класса',
+                price: '42 900 ₽ (с установкой)',
+                image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                specs: [
+                    { label: 'Мощность охлаждения', value: '2.5 кВт' },
+                    { label: 'Площадь помещения', value: '25 м²' },
+                    { label: 'Уровень шума', value: '19 дБ' },
+                    { label: 'Класс энергоэффективности', value: 'A+++' },
+                    { label: 'Гарантия', value: '5 лет' },
+                    { label: 'Wi-Fi управление', value: 'Да' }
+                ]
+            },
+            2: {
+                title: 'Mitsubishi Electric MSZ',
+                description: 'Премиум сплит-система с инверторным компрессором',
+                price: '56 500 ₽ (с установкой)',
+                image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                specs: [
+                    { label: 'Мощность охлаждения', value: '3.5 кВт' },
+                    { label: 'Площадь помещения', value: '35 м²' },
+                    { label: 'Уровень шума', value: '18 дБ' },
+                    { label: 'Класс энергоэффективности', value: 'A+++' },
+                    { label: 'Гарантия', value: '5 лет' },
+                    { label: 'Wi-Fi управление', value: 'Да' }
+                ]
+            }
+        };
+        
+        function openProductModal(productId) {
+            const product = productsData[productId];
+            if (!product) return;
+            
+            document.getElementById('modal-title').textContent = product.title;
+            document.getElementById('modal-description').textContent = product.description;
+            document.getElementById('modal-price').textContent = product.price;
+            document.getElementById('modal-image').src = product.image;
+            document.getElementById('modal-image').alt = product.title;
+            
+            const specsContainer = document.getElementById('modal-specs');
+            specsContainer.innerHTML = '';
+            
+            product.specs.forEach(spec => {
+                const div = document.createElement('div');
+                div.className = 'flex justify-between';
+                div.innerHTML = `
+                    <span class="text-gray-600">${spec.label}:</span>
+                    <span class="font-semibold">${spec.value}</span>
+                `;
+                specsContainer.appendChild(div);
+            });
+            
+            document.getElementById('product-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeProductModal() {
+            document.getElementById('product-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+    </script>
+    <script src="js/cart.js"></script>
+   
+</body>
+</html>

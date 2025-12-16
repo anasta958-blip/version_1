@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наши проекты | AirTech - Реализованные работы по вентиляции и кондиционированию</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Manrope', sans-serif; }
+        .portfolio-card { transition: transform 0.3s ease; }
+        .portfolio-card:hover { transform: scale(1.02); }
+        .before-after { position: relative; overflow: hidden; }
+        .before-after img { width: 100%; height: 300px; object-fit: cover; }
+        .slider-handle { 
+            position: absolute; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%);
+            width: 40px; 
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            cursor: ew-resize;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+        .slider-handle i { color: #667eea; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Навигация -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-lg shadow-sm z-50">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="text-2xl font-bold">
+                    <span class="text-gray-900">Air</span>
+                    <span class="text-blue-600">Tech</span>
+                </a>
+                <div class="hidden lg:flex items-center space-x-10">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600">Главная</a>
+                    <a href="services.html" class="text-gray-700 hover:text-blue-600">Услуги</a>
+                    <a href="products.html" class="text-gray-700 hover:text-blue-600">Оборудование</a>
+                    <a href="solutions.html" class="text-gray-700 hover:text-blue-600">Решения</a>
+                    <a href="portfolio.html" class="text-blue-600 font-semibold">Проекты</a>
+                    <a href="faq.html" class="text-gray-700 hover:text-blue-600">FAQ</a>
+                    <a href="contacts.html" class="text-gray-700 hover:text-blue-600">Контакты</a>
+                </div>
+                <a href="tel:+79991234567" class="hidden lg:inline text-gray-900 font-semibold">
+                    <i class="fas fa-phone mr-2"></i>+7 (999) 123-45-67
+                </a>
+                 <!-- Иконка корзины -->
+    <a href="cart.html" class="relative">
+        <i class="fas fa-shopping-cart text-gray-700 hover:text-blue-600 text-xl transition"></i>
+        <span id="cart-count" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center hidden">0</span>
+    </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Заголовок страницы -->
+    <section class="pt-32 pb-20 bg-gradient-to-r from-blue-900 to-gray-900">
+        <div class="container mx-auto px-6">
+            <h1 class="text-5xl font-bold text-white mb-6">Наши проекты</h1>
+            <p class="text-xl text-gray-300 max-w-3xl">
+                Более 150 успешных проектов по монтажу вентиляции и кондиционирования в Москве и области
+            </p>
+        </div>
+    </section>
+
+    <!-- Статистика -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <p class="text-4xl font-bold text-blue-600 mb-2" id="counter1">0</p>
+                    <p class="text-gray-600">Выполненных проектов</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-4xl font-bold text-blue-600 mb-2" id="counter2">0</p>
+                    <p class="text-gray-600">Довольных клиентов</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-4xl font-bold text-blue-600 mb-2" id="counter3">0</p>
+                    <p class="text-gray-600">Квадратных метров</p>
+                </div>
+                <div class="text-center">
+                    <p class="text-4xl font-bold text-blue-600 mb-2" id="counter4">0</p>
+                    <p class="text-gray-600">Лет гарантии в среднем</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Фильтры проектов -->
+    <section class="py-10">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900">Наши работы</h2>
+                    <p class="text-gray-600">От квартир до торговых центров</p>
+                </div>
+                
+                <div class="flex flex-wrap gap-3">
+                    <button class="portfolio-filter px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold" data-filter="all">
+                        Все работы
+                    </button>
+                    <button class="portfolio-filter px-4 py-2 bg-gray-100 rounded-lg font-semibold hover:bg-gray-200" data-filter="apartment">
+                        Квартиры
+                    </button>
+                    <button class="portfolio-filter px-4 py-2 bg-gray-100 rounded-lg font-semibold hover:bg-gray-200" data-filter="house">
+                        Дома
+                    </button>
+                    <button class="portfolio-filter px-4 py-2 bg-gray-100 rounded-lg font-semibold hover:bg-gray-200" data-filter="office">
+                        Офисы
+                    </button>
+                    <button class="portfolio-filter px-4 py-2 bg-gray-100 rounded-lg font-semibold hover:bg-gray-200" data-filter="commercial">
+                        Коммерция
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Галерея проектов -->
+    <section class="py-10">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Проект 1 -->
+                <div class="portfolio-card bg-white rounded-2xl shadow-lg overflow-hidden" data-category="apartment">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Лофт в центре Москвы" 
+                             class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                Квартира
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Лофт в центре Москвы</h3>
+                        <p class="text-gray-600 mb-4">Площадь: 85 м² | Срок: 5 дней</p>
+                        
+                        <p class="text-gray-600 mb-6">
+                            Монтаж канальной системы кондиционирования и приточной вентиляции с рекуперацией в современном лофте.
+                        </p>
+                        
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="font-semibold text-gray-900">Использовано:</p>
+                                <p class="text-gray-600 text-sm">Daikin VRF, Breezart 550</p>
+                            </div>
+                            <button onclick="openProjectModal(1)" class="text-blue-600 font-semibold hover:text-blue-800">
+                                Подробнее →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Проект 2 -->
+                <div class="portfolio-card bg-white rounded-2xl shadow-lg overflow-hidden" data-category="house">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Коттедж в Подмосковье" 
+                             class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                Дом
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Коттедж в Подмосковье</h3>
+                        <p class="text-gray-600 mb-4">Площадь: 240 м² | Срок: 12 дней</p>
+                        
+                        <p class="text-gray-600 mb-6">
+                            Полный комплекс: проектирование и монтаж системы вентиляции с рекуперацией, мульти-сплит система на 5 комнат.
+                        </p>
+                        
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="font-semibold text-gray-900">Использовано:</p>
+                                <p class="text-gray-600 text-sm">Mitsubishi Electric, ВЕНТС</p>
+                            </div>
+                            <button onclick="openProjectModal(2)" class="text-blue-600 font-semibold hover:text-blue-800">
+                                Подробнее →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Проект 3 -->
+                <div class="portfolio-card bg-white rounded-2xl shadow-lg overflow-hidden" data-category="office">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Офис IT-компании" 
+                             class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-purple-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                Офис
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Офис IT-компании</h3>
+                        <p class="text-gray-600 mb-4">Площадь: 180 м² | Срок: 7 дней</p>
+                        
+                        <p class="text-gray-600 mb-6">
+                            Создание комфортного микроклимата для open-space офиса. Канальные кондиционеры и приточная вентиляция.
+                        </p>
+                        
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="font-semibold text-gray-900">Использовано:</p>
+                                <p class="text-gray-600 text-sm">Daikin, Systemair</p>
+                            </div>
+                            <button onclick="openProjectModal(3)" class="text-blue-600 font-semibold hover:text-blue-800">
+                                Подробнее →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Проект 4 -->
+                <div class="portfolio-card bg-white rounded-2xl shadow-lg overflow-hidden" data-category="commercial">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Ресторан европейской кухни" 
+                             class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                Ресторан
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Ресторан европейской кухни</h3>
+                        <p class="text-gray-600 mb-4">Площадь: 120 м² | Срок: 10 дней</p>
+                        
+                        <p class="text-gray-600 mb-6">
+                            Проектирование и монтаж мощной вытяжки для кухни, системы кондиционирования зала с зональным управлением.
+                        </p>
+                        
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="font-semibold text-gray-900">Использовано:</p>
+                                <p class="text-gray-600 text-sm">Korf, Systemair, Mitsubishi</p>
+                            </div>
+                            <button onclick="openProjectModal(4)" class="text-blue-600 font-semibold hover:text-blue-800">
+                                Подробнее →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Проект 5 -->
+                <div class="portfolio-card bg-white rounded-2xl shadow-lg overflow-hidden" data-category="apartment">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Квартира в новостройке" 
+                             class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                Квартира
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Квартира в новостройке</h3>
+                        <p class="text-gray-600 mb-4">Площадь: 65 м² | Срок: 3 дня</p>
+                        
+                        <p class="text-gray-600 mb-6">
+                            Установка сплит-систем в трех комнатах и компактной приточной вентиляции в современной квартире.
+                        </p>
+                        
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="font-semibold text-gray-900">Использовано:</p>
+                                <p class="text-gray-600 text-sm">Daikin FTXS, Tion O2</p>
+                            </div>
+                            <button onclick="openProjectModal(5)" class="text-blue-600 font-semibold hover:text-blue-800">
+                                Подробнее →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Проект 6 -->
+                <div class="portfolio-card bg-white rounded-2xl shadow-lg overflow-hidden" data-category="commercial">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Бутик одежды" 
+                             class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                        <div class="absolute bottom-4 left-4">
+                            <span class="bg-yellow-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                Магазин
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Бутик одежды</h3>
+                        <p class="text-gray-600 mb-4">Площадь: 90 м² | Срок: 6 дней</p>
+                        
+                        <p class="text-gray-600 mb-6">
+                            Монтаж кассетных кондиционеров и системы приточной вентиляции для поддержания оптимального микроклимата.
+                        </p>
+                        
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="font-semibold text-gray-900">Использовано:</p>
+                                <p class="text-gray-600 text-sm">Daikin, VENTS</p>
+                            </div>
+                            <button onclick="openProjectModal(6)" class="text-blue-600 font-semibold hover:text-blue-800">
+                                Подробнее →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Кнопка "Показать еще" -->
+            <div class="text-center mt-12">
+                <button class="bg-gray-100 hover:bg-gray-200 text-gray-800 px-8 py-3 rounded-lg font-semibold transition">
+                    Показать еще проекты
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Отзывы клиентов -->
+    <section class="py-20 bg-gradient-to-r from-blue-50 to-purple-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Отзывы наших клиентов</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Что говорят заказчики о нашей работе
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-blue-600 font-bold">АИ</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Анна Иванова</h4>
+                            <p class="text-gray-600 text-sm">Квартира, 65 м²</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        "Очень профессиональная работа! Установили кондиционеры в трех комнатах за один день. Все чисто, аккуратно, объяснили как пользоваться. Спасибо!"
+                    </p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-blue-600 font-bold">СП</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Сергей Петров</h4>
+                            <p class="text-gray-600 text-sm">Загородный дом, 180 м²</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        "Делали полный комплекс вентиляции и кондиционирования в доме. Работали быстро, качественно. Особенно порадовала система с рекуперацией - зимой тепло, летом прохладно."
+                    </p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-blue-600 font-bold">ОК</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-900">Ольга Козлова</h4>
+                            <p class="text-gray-600 text-sm">Кафе, 80 м²</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        "Отличная работа для нашего кафе! Сделали мощную вытяжку для кухни и тихое кондиционирование зала. Клиенты довольны, сотрудники тоже. Рекомендую!"
+                    </p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- До/После слайдер -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Работы "До" и "После"</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Наглядно показываем качество нашей работы
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="before-after relative rounded-2xl overflow-hidden shadow-2xl">
+                    <div class="absolute top-0 left-0 w-full h-full">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="До" 
+                             class="absolute top-0 left-0 w-full h-full object-cover">
+                        <div class="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-lg font-semibold">
+                            ДО
+                        </div>
+                    </div>
+                    
+                    <div class="absolute top-0 left-0 w-1/2 h-full overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="После" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-lg font-semibold">
+                            ПОСЛЕ
+                        </div>
+                    </div>
+                    
+                    <div class="slider-handle" id="slider-handle">
+                        <i class="fas fa-arrows-alt-h"></i>
+                    </div>
+                </div>
+                
+                <p class="text-center text-gray-600 mt-6">
+                    Передвиньте ползунок, чтобы увидеть разницу. Установка канального кондиционера в офисе.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Форма заявки -->
+    <section id="calculator" class="py-20 bg-gradient-to-r from-blue-900 to-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden">
+                <div class="md:flex">
+                    <!-- Левая часть с формой -->
+                    <div class="md:w-1/2 p-10">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-4">Рассчитайте стоимость</h2>
+                        <p class="text-gray-600 mb-8">Оставьте заявку и получите детальный расчет в течение 1 часа</p>
+
+                        <form id="main-form" class="space-y-6">
+                            <div>
+                                <label class="block text-gray-700 mb-2">Ваше имя</label>
+                                <input type="text"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                                    placeholder="Иван Иванов" required>
+                            </div>
+
+                            <div>
+                                <label class="block text-gray-700 mb-2">Телефон</label>
+                                <input type="tel"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                                    placeholder="+7 (999) 123-45-67" required>
+                            </div>
+
+                            <div>
+                                <label class="block text-gray-700 mb-2">Тип услуги</label>
+                                <select
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition">
+                                    <option value="" disabled selected>Выберите услугу</option>
+                                    <option value="ventilation">Вентиляция</option>
+                                    <option value="conditioning">Кондиционирование</option>
+                                    <option value="project">Проектирование</option>
+                                    <option value="maintenance">Обслуживание</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-gray-700 mb-2">Комментарий</label>
+                                <textarea
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition h-32"
+                                    placeholder="Опишите вашу задачу..."></textarea>
+                            </div>
+
+                            <button type="submit"
+                                class="w-full bg-gradient-primary hover:opacity-90 text-white py-4 rounded-lg font-semibold text-lg transition shadow-lg hover:shadow-xl">
+                                Отправить заявку
+                            </button>
+
+                            <p class="text-sm text-gray-500 text-center">
+                                Нажимая кнопку, вы соглашаетесь с
+                                <a href="#" class="text-blue-600 hover:underline">политикой конфиденциальности</a>
+                            </p>
+                        </form>
+                    </div>
+
+                    <!-- Правая часть с информацией -->
+                    <div class="md:w-1/2 bg-gradient-to-br from-blue-600 to-purple-700 p-10 text-white">
+                        <h3 class="text-2xl font-bold mb-6">Почему выбирают нас?</h3>
+
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-white/20 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-check text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-2">Бесплатный выезд инженера</h4>
+                                    <p class="text-white/80">В течение 24 часов после заявки</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="bg-white/20 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-check text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-2">Гарантия 5 лет</h4>
+                                    <p class="text-white/80">На все виды монтажных работ</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="bg-white/20 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-check text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-2">Официальный договор</h4>
+                                    <p class="text-white/80">С поэтапной оплатой работ</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div class="bg-white/20 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-check text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-2">Сертифицированные специалисты</h4>
+                                    <p class="text-white/80">С опытом работы от 5 лет</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-10 pt-8 border-t border-white/20">
+                            <div class="flex items-center">
+                                <div class="mr-4">
+                                    <i class="fas fa-headset text-3xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-2xl font-bold">+7 (999) 123-45-67</p>
+                                    <p class="text-white/80">Ежедневно с 9:00 до 21:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+      <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <!-- Колонка 1 -->
+                <div>
+                    <a href="index.html" class="text-3xl font-bold mb-6 inline-block">
+                        <span class="text-white">Air</span>
+                        <span class="text-blue-400">Tech</span>
+                    </a>
+                    <p class="text-gray-400 mb-6">
+                        Профессиональный монтаж и обслуживание систем вентиляции и кондиционирования с 2012 года.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-blue-600 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-blue-500 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-green-500 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#"
+                            class="bg-gray-800 hover:bg-red-600 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Колонка 2 -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Контакты</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-blue-400 mt-1 mr-3"></i>
+                            <span class="text-gray-400">Москва, ул. Примерная, д. 10</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-blue-400 mr-3"></i>
+                            <a href="tel:+79991234567" class="text-gray-400 hover:text-white transition">+7 (999)
+                                123-45-67</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-blue-400 mr-3"></i>
+                            <a href="mailto:info@airtech.ru"
+                                class="text-gray-400 hover:text-white transition">info@airtech.ru</a>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-clock text-blue-400 mt-1 mr-3"></i>
+                            <span class="text-gray-400">Пн-Пт: 9:00-19:00<br>Сб: 10:00-16:00</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Колонка 3 -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Услуги</h4>
+                    <ul class="space-y-3">
+                        <li><a href="services.html#ventilation" class="text-gray-400 hover:text-white transition">Монтаж
+                                вентиляции</a></li>
+                        <li><a href="services.html#conditioning"
+                                class="text-gray-400 hover:text-white transition">Кондиционирование</a></li>
+                        <li><a href="services.html#design"
+                                class="text-gray-400 hover:text-white transition">Проектирование</a></li>
+                        <li><a href="services.html#maintenance"
+                                class="text-gray-400 hover:text-white transition">Обслуживание</a></li>
+                        <li><a href="services.html#measurements"
+                                class="text-gray-400 hover:text-white transition">Замеры и диагностика</a></li>
+                    </ul>
+                </div>
+
+                <!-- Колонка 4 -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6">Компания</h4>
+                    <ul class="space-y-3">
+                        <li><a href="portfolio.html" class="text-gray-400 hover:text-white transition">Проекты</a></li>
+                        <li><a href="solutions.html" class="text-gray-400 hover:text-white transition">Готовые
+                                решения</a></li>
+                        <li><a href="products.html" class="text-gray-400 hover:text-white transition">Оборудование</a>
+                        </li>
+                        <li><a href="faq.html" class="text-gray-400 hover:text-white transition">Вопросы и ответы</a>
+                        </li>
+                        <li><a href="contacts.html" class="text-gray-400 hover:text-white transition">Контакты</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 mb-4 md:mb-0">© 2024 AirTech. Все права защищены.</p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white transition">Политика конфиденциальности</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">Договор оферты</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition">Карта сайта</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модальное окно проекта -->
+    <div id="project-modal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-8">
+                <button onclick="closeProjectModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+                
+                <div id="project-content">
+                    <!-- Контент будет заполнен JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Анимация счетчиков
+        function animateCounter(elementId, target, duration = 2000) {
+            const element = document.getElementById(elementId);
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 16);
+        }
+        
+        // Запуск счетчиков при прокрутке
+        let countersAnimated = false;
+        window.addEventListener('scroll', () => {
+            const statsSection = document.querySelector('.bg-white');
+            const rect = statsSection.getBoundingClientRect();
+            
+            if (rect.top < window.innerHeight - 100 && !countersAnimated) {
+                animateCounter('counter1', 154);
+                animateCounter('counter2', 142);
+                animateCounter('counter3', 18500);
+                animateCounter('counter4', 4);
+                countersAnimated = true;
+            }
+        });
+        
+        // Фильтрация проектов
+        document.querySelectorAll('.portfolio-filter').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Сброс активного класса
+                document.querySelectorAll('.portfolio-filter').forEach(b => {
+                    b.classList.remove('bg-blue-600', 'text-white');
+                    b.classList.add('bg-gray-100', 'text-gray-900');
+                });
+                
+                // Добавление активного класса
+                this.classList.remove('bg-gray-100', 'text-gray-900');
+                this.classList.add('bg-blue-600', 'text-white');
+                
+                // Фильтрация
+                const filter = this.dataset.filter;
+                const projects = document.querySelectorAll('.portfolio-card');
+                
+                projects.forEach(project => {
+                    if (filter === 'all' || project.dataset.category.includes(filter)) {
+                        project.style.display = 'block';
+                    } else {
+                        project.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Слайдер "До/После"
+        const sliderHandle = document.getElementById('slider-handle');
+        const beforeAfterContainer = document.querySelector('.before-after');
+        let isDragging = false;
+        
+        sliderHandle.addEventListener('mousedown', () => {
+            isDragging = true;
+            document.body.style.cursor = 'ew-resize';
+        });
+        
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            
+            const containerRect = beforeAfterContainer.getBoundingClientRect();
+            let x = e.clientX - containerRect.left;
+            x = Math.max(0, Math.min(x, containerRect.width));
+            
+            const widthPercent = (x / containerRect.width) * 100;
+            beforeAfterContainer.querySelector('div:nth-child(2)').style.width = `${widthPercent}%`;
+            sliderHandle.style.left = `${widthPercent}%`;
+        });
+        
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            document.body.style.cursor = 'default';
+        });
+        
+        // Для мобильных устройств
+        sliderHandle.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            e.preventDefault();
+        });
+        
+        document.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            
+            const containerRect = beforeAfterContainer.getBoundingClientRect();
+            let x = e.touches[0].clientX - containerRect.left;
+            x = Math.max(0, Math.min(x, containerRect.width));
+            
+            const widthPercent = (x / containerRect.width) * 100;
+            beforeAfterContainer.querySelector('div:nth-child(2)').style.width = `${widthPercent}%`;
+            sliderHandle.style.left = `${widthPercent}%`;
+        });
+        
+        document.addEventListener('touchend', () => {
+            isDragging = false;
+        });
+        
+        // Модальное окно проекта
+        const projectsData = {
+            1: {
+                title: 'Лофт в центре Москвы',
+                location: 'Москва, ул. Тверская',
+                area: '85 м²',
+                duration: '5 рабочих дней',
+                year: '2023',
+                description: 'Модернизация климатической системы в современном лофте. Заказчик хотел сохранить индустриальный стиль помещения, но обеспечить комфортный микроклимат.',
+                challenge: 'Ограниченное пространство для размещения оборудования, требования по шумности, сохранение дизайна помещения.',
+                solution: 'Установка канальной системы кондиционирования Daikin с размещением оборудования в техническом помещении. Монтаж приточной вентиляции с рекуператором Breezart 550 для энергоэффективности.',
+                equipment: [
+                    'Канальный кондиционер Daikin FDXM71F',
+                    'Приточная установка Breezart 550 с рекуперацией',
+                    'Распределительные решетки с регулируемым потоком',
+                    'Система автоматики и управления',
+                    'Шумоглушители в воздуховодах'
+                ],
+                result: 'Достигнута температура 22-24°C летом и 20-22°C зимой при уровне шума менее 25 дБ. Экономия на отоплении за счет рекуперации составила 65%.',
+                images: [
+                    'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+                ]
+            }
+        };
+        
+        function openProjectModal(projectId) {
+            const project = projectsData[projectId] || {
+                title: 'Проект',
+                description: 'Детальная информация о проекте',
+                equipment: ['Оборудование 1', 'Оборудование 2'],
+                result: 'Отличный результат'
+            };
+            
+            const projectContent = document.getElementById('project-content');
+            projectContent.innerHTML = `
+                <h3 class="text-3xl font-bold text-gray-900 mb-4">${project.title}</h3>
+                
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-gray-50 rounded-xl p-4">
+                        <p class="font-semibold text-gray-600">Площадь</p>
+                        <p class="text-xl font-bold">${project.area || 'Индивидуально'}</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-xl p-4">
+                        <p class="font-semibold text-gray-600">Срок</p>
+                        <p class="text-xl font-bold">${project.duration || 'Индивидуально'}</p>
+                    </div>
+                    <div class="bg-gray-50 rounded-xl p-4">
+                        <p class="font-semibold text-gray-600">Год</p>
+                        <p class="text-xl font-bold">${project.year || '2024'}</p>
+                    </div>
+                </div>
+                
+                <div class="mb-8">
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Задача</h4>
+                    <p class="text-gray-600">${project.description}</p>
+                </div>
+                
+                ${project.challenge ? `
+                <div class="mb-8">
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Сложности</h4>
+                    <p class="text-gray-600">${project.challenge}</p>
+                </div>
+                ` : ''}
+                
+                <div class="mb-8">
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Решение</h4>
+                    <p class="text-gray-600">${project.solution || project.description}</p>
+                </div>
+                
+                <div class="mb-8">
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Использованное оборудование</h4>
+                    <ul class="space-y-2">
+                        ${project.equipment.map(item => `
+                            <li class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-3"></i>
+                                <span>${item}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+                
+                <div class="bg-blue-50 rounded-xl p-6 mb-8">
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Результат</h4>
+                    <p class="text-gray-600">${project.result}</p>
+                </div>
+                
+                ${project.images ? `
+                <div class="mb-8">
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Фотографии проекта</h4>
+                    <div class="grid grid-cols-2 gap-4">
+                        ${project.images.map(img => `
+                            <img src="${img}" alt="${project.title}" class="rounded-lg w-full h-48 object-cover">
+                        `).join('')}
+                    </div>
+                </div>
+                ` : ''}
+                
+                <div class="mt-8 pt-8 border-t">
+                    <h4 class="text-xl font-bold text-gray-900 mb-4">Хотите такой же результат?</h4>
+                    <form class="grid md:grid-cols-3 gap-4">
+                        <input type="text" placeholder="Ваше имя" class="px-4 py-3 border rounded-lg">
+                        <input type="tel" placeholder="Телефон" class="px-4 py-3 border rounded-lg">
+                        <button type="submit" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-lg font-semibold">
+                            Обсудить проект
+                        </button>
+                    </form>
+                </div>
+            `;
+            
+            document.getElementById('project-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeProjectModal() {
+            document.getElementById('project-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Запуск анимации счетчиков при загрузке
+        setTimeout(() => {
+            const statsSection = document.querySelector('.bg-white');
+            if (statsSection.getBoundingClientRect().top < window.innerHeight) {
+                animateCounter('counter1', 154);
+                animateCounter('counter2', 142);
+                animateCounter('counter3', 18500);
+                animateCounter('counter4', 4);
+                countersAnimated = true;
+            }
+        }, 500);
+    </script>
+    <!-- Простой скрипт для обновления иконки корзины -->
+<script>
+    // Обновляем иконку корзины на всех страницах
+    document.addEventListener('DOMContentLoaded', function() {
+        function updateCartIcon() {
+            const cart = JSON.parse(localStorage.getItem('airtech_cart')) || [];
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            const cartCount = document.getElementById('cart-count');
+            const mobileCartCount = document.getElementById('mobile-cart-count');
+            
+            [cartCount, mobileCartCount].forEach(element => {
+                if (element) {
+                    if (totalItems > 0) {
+                        element.textContent = totalItems > 99 ? '99+' : totalItems;
+                        element.classList.remove('hidden');
+                    } else {
+                        element.classList.add('hidden');
+                    }
+                }
+            });
+        }
+        
+        updateCartIcon();
+    });
+</script>
+</body>
+</html>
